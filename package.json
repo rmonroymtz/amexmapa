@@ -10,11 +10,13 @@
   },
   "dependencies": {
     "next": "12.2.3",
+    "next-pwa": "^5.5.5",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
   "devDependencies": {
     "eslint": "8.20.0",
-    "eslint-config-next": "12.2.3"
+    "eslint-config-next": "12.2.3",
+    "prettier": "^2.7.1"
   }
 }

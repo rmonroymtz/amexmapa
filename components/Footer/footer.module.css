@@ -1,0 +1,6 @@
+@media (max-width: 600px) {
+    .footer hr {
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+}

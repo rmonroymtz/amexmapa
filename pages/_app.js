@@ -1,9 +1,14 @@
-import '../styles/globals.css'
-import '../styles/Header.module.css'
-import '../styles/Normalize.css'
+import { Fragment } from 'react';
+import GoogleMapsScript from '../components/Map/googleMapsScript';
+import '../styles/normalize.css';
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+    return (
+        <Fragment>
+            <GoogleMapsScript />
+            <Component {...pageProps} />
+        </Fragment>
+    );
 }
 
-export default MyApp
+export default MyApp;

@@ -1,0 +1,27 @@
+.root{
+    background: #fff;
+    display: flex;
+    align-items: center;
+    height: 70px;
+    border-bottom: 0.0625rem solid #ecedee;
+}
+
+.contentLogo{
+    padding-left: 1.4rem;
+}
+
+.contentLocation{
+    display: flex;
+    border-bottom: 4px solid #002663;
+    color: #002663;
+    text-decoration: none !important;
+    outline: none;
+    height: 100%;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+.iconLocation {
+    stroke: #002663;
+    fill: #002663;
+}

@@ -1,20 +1,19 @@
-import React from 'react'
-import styles from '../../styles/Header.module.css'
-import {IconLocation, LogoAmex} from "../Icons/icons";
+import React from 'react';
+import styles from '../../styles/Header.module.css';
+import { IconLocation, LogoAmex } from '../Icons/icons';
 
-const Header =()=> {
-
-    return(
+const Header = () => {
+    return (
         <div className={styles.root}>
             <span className={styles.contentLogo}>
-                <LogoAmex/>
+                <LogoAmex />
             </span>
             <a className={styles.contentLocation} href={'#'}>
-                <IconLocation/>
+                <IconLocation />
                 <span>Mapa</span>
             </a>
         </div>
-    )
-}
+    );
+};
 
 export default Header;

@@ -1,0 +1,23 @@
+.root {
+    color: #b42c01;
+    border: 0.0625rem solid #b42c01;
+    padding: 0 1.25rem;
+    height: 86px;
+    display: flex;
+    align-items: center;
+}
+
+.containerText {
+    padding: 0 .625rem;
+    font-size: 15px;
+}
+
+.btnClose {
+    background: none;
+    border: none;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    cursor: pointer;
+}

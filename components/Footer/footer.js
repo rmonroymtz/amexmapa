@@ -7,7 +7,7 @@ const Footer = (props) => {
     if (!component) return null;
     return (
         <div
-            class={classes.footer}
+            className={classes.footer}
             dangerouslySetInnerHTML={{ __html: component }}
         />
     );

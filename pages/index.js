@@ -4,9 +4,20 @@ import Sidebar from '../components/Sidebar/sidebar';
 import Warning from '../components/Warning/warning';
 import Details from '../components/Details/details';
 import Footer from '../components/Footer';
-import Map from '../components/Map'
+import Map from '../components/Map';
+import useHome from '../hooks/useHome';
 
 export default function Home(props) {
+    const talonProps = useHome();
+    const { errorConsultPosition } = talonProps;
+
+    if(errorConsultPosition.code){
+        if(errorConsultPosition.code === 1){
+            return 'Bloqueado por el usuario'
+        }
+        return errorConsultPosition.code;
+    }
+
     return (
         <div className={styles.container}>
             <Header />

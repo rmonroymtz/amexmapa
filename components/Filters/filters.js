@@ -1,5 +1,5 @@
 import React, {useCallback, useState} from "react";
-import styles from "../../styles/Filters.module.css";
+import styles from "./filters.module.css";
 import {IconFilter, IconShopSmall, IconX} from "../Icons/icons";
 
 const Filters =()=>{
@@ -72,7 +72,7 @@ const Filters =()=>{
                             <input type="radio"/>
                         </div>
                         <div className={styles.div15}>
-                            Comrpas
+                            Compras
                         </div>
                         <div className={styles.div16}>
                             <input type="radio"/>

@@ -1,5 +1,5 @@
 import React, {Fragment, useState} from 'react'
-import styles from "../../styles/Details.module.css";
+import styles from "./details.module.css";
 import {IconShopSmall, IconPhone, IconShare, IconChevronLeft} from "../Icons/icons";
 
 const Details =(props)=> {

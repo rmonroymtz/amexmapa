@@ -1,12 +1,12 @@
 import React from 'react';
-import styles from '../../styles/Header.module.css';
+import styles from './header.module.css';
 import { IconLocation, LogoAmex } from '../Icons/icons';
 
 const Header = () => {
     return (
         <div className={styles.root}>
             <span className={styles.contentLogo}>
-                <LogoAmex />
+                <LogoAmex className={styles.logoAmex} />
             </span>
             <a className={styles.contentLocation} href={'#'}>
                 <IconLocation />

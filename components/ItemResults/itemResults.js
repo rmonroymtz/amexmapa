@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react'
-import styles from '../../styles/ItemResults.module.css'
+import styles from './itemResults.module.css'
 import {IconNewListing, IconShopSmall} from "../Icons/icons";
 import Item from "../Item/item";
 

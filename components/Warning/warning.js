@@ -1,5 +1,5 @@
 import React, {Fragment, useState} from 'react'
-import styles from './../../styles/Warning.module.css'
+import styles from './warning.module.css'
 import {IconAlert, IconX} from "../Icons/icons";
 
 const Warning =()=> {

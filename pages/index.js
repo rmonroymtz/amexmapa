@@ -6,8 +6,13 @@ import Details from '../components/Details/details';
 import Footer from '../components/Footer';
 import Map from '../components/Map';
 import useHome from '../hooks/useHome';
+import {useWindowWidth} from "@react-hook/window-size";
 
 export default function Home(props) {
+
+    const onlyWidth = useWindowWidth()
+    const isMobile = onlyWidth<=768;
+
     const talonProps = useHome();
     const { errorConsultPosition } = talonProps;
 
@@ -28,7 +33,7 @@ export default function Home(props) {
                 <Sidebar />
                 <div className={styles.containerMap}>
                     <Details />
-                    <Map />
+                    {isMobile? null:<Map />}
                 </div>
             </div>
 

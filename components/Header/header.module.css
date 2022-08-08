@@ -4,21 +4,60 @@
     align-items: center;
     height: 70px;
     border-bottom: 0.0625rem solid #ecedee;
+    padding: 0 12px;
 }
 
-.contentLogo{
-    padding-left: 1.4rem;
+.active {
+    background: #006fcf;
+    display: flex;
+    align-items: center;
+    height: 70px;
+    border-bottom: 0.0625rem solid #ecedee;
+    padding: 0 12px;
 }
 
+.backgroundBlack {
+    background-color: rgba(0,0,0,.5);
+    position: fixed;
+    top: 70px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 201;
+    overflow: hidden;
+    outline: 0;
+}
+
+.links {
+    position: absolute;
+    background: #ffffff;
+    height: 52px;
+    width: 100%;
+}
 .contentLocation{
     display: flex;
-    border-bottom: 4px solid #002663;
+    border-bottom: none;
     color: #002663;
     text-decoration: none !important;
     outline: none;
     height: 100%;
     align-items: center;
     margin-left: 1rem;
+}
+.contentLocation>span {
+    margin-left: 1rem;
+}
+
+.containerIconsMobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.iconX {
+    stroke: #006fcf;
+    fill: #006fcf;
 }
 
 .iconLocation {
@@ -28,4 +67,43 @@
 
 .logoAmex {
     fill:#FFFFFF
+}
+
+.iconHamburguer {
+    background: #006fcf;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    width: 42px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.iconCloseX {
+    composes: iconHamburguer;
+    background: #ffffff;
+}
+
+@media (min-width: 768px){
+
+    .root {
+        padding: 0;
+    }
+    .contentLogo{
+        padding-left: 1.4rem;
+    }
+    .iconHamburguer{
+        display: none;
+    }
+
+    .links {
+        position: initial;
+        background: none;
+    }
+
+    .contentLocation{
+        border-bottom: 4px solid #002663;
+
+    }
+
 }

@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react'
-import styles from "../../styles/Item.module.css";
+import styles from "./item.module.css";
 
 const Item =(props)=> {
 

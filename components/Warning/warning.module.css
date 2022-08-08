@@ -1,8 +1,8 @@
 .root {
     color: #b42c01;
     border: 0.0625rem solid #b42c01;
-    padding: 0 1.25rem;
-    height: 86px;
+    padding: 1.25rem;
+    min-height: 86px;
     display: flex;
     align-items: center;
 }

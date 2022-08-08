@@ -1,5 +1,5 @@
 .root {
-    max-width: 40%;
+    max-width: 25%;
     border-left: 0.0625rem solid #ecedee;
     border-right: 0.0625rem solid #ecedee;
 }
@@ -89,11 +89,11 @@
 }
 
 .iconLocation {
-    content: url("./../public/iconLocation.png");
+    content: url("../../public/iconLocation.png");
     height: 22px;
 }
 .iconLocation:hover {
-    content: url("./../public/iconLocationHover.png");
+    content: url("../../public/iconLocation.png");
 }
 
 .iconPhone {

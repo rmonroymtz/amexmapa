@@ -1,88 +1,33 @@
-import React, { Fragment } from 'react';
+import { Fragment, useMemo } from 'react';
 import styles from './itemResults.module.css';
 import { IconNewListing, IconShopSmall } from '../Icons/icons';
 import Item from '../Item/item';
 
-const ItemResults = () => {
-    const dummyData = [
-        {
-            type: 'C', // Icon with type of commerce
-            name: 'CIENFUEGOS',
-            address: 'Calle x por avenida equis',
-            address2: 'Merida Yucatan',
-            distance: '10km',
-            iconListing: <IconNewListing />,
-            iconShop: <IconShopSmall /> //icon
-        },
-        {
-            type: 'C', // Icon with type of commerce
-            name: 'CIENFUEGOS',
-            address: 'Calle x por avenida equis',
-            address2: 'Merida Yucatan',
-            distance: '10km',
-            iconListing: <IconNewListing />,
-            iconShop: <IconShopSmall /> //icon
-        },
-        {
-            type: 'C', // Icon with type of commerce
-            name: 'CIENFUEGOS',
-            address: 'Calle x por avenida equis',
-            address2: 'Merida Yucatan',
-            distance: '10km',
-            iconListing: ' ',
-            iconShop: ' ' //icon
-        },
-        {
-            type: 'C', // Icon with type of commerce
-            name: 'CIENFUEGOS',
-            address: 'Calle x por avenida equis',
-            address2: 'Merida Yucatan',
-            distance: '10km',
-            iconShop: <IconShopSmall /> //icon
-        },
-        {
-            type: 'C', // Icon with type of commerce
-            name: 'CIENFUEGOS',
-            address: 'Calle x por avenida equis',
-            address2: 'Merida Yucatan',
-            distance: '10km',
-            iconListing: <IconNewListing />,
-            iconShop: '' //icon
-        },
-        {
-            type: 'C', // Icon with type of commerce
-            name: 'CIENFUEGOS',
-            address: 'Calle x por avenida equis',
-            address2: 'Merida Yucatan',
-            distance: '10km',
-            iconShop: <IconShopSmall /> //icon
-        },
-        {
-            type: 'C', // Icon with type of commerce
-            name: 'CIENFUEGOS',
-            address: 'Calle x por avenida equis',
-            address2: 'Merida Yucatan',
-            distance: '10km',
-            iconListing: <IconNewListing />,
-            iconShop: '' //icon
-        }
-    ];
-
-    const listItems = dummyData.map((item, id) => {
-        return (
-            <Fragment key={`item-id`}>
+const ItemResults = ({ places }) => {
+    const formatedPlaces = useMemo(() => {
+        if (!places) return null;
+        const listOfPlaces = places.map((place, id) => {
+            const distance = `${parseFloat(place.distance_km).toFixed(1)} km`;
+            return (
                 <Item
-                    type={item.type}
-                    name={item.name}
-                    address={item.address}
-                    address2={item.address2}
-                    distance={item.distance}
-                    iconListing={item.iconListing}
-                    iconShop={item.iconShop}
+                    key={`place-${id}`}
+                    type={place.type}
+                    name={place.nombre_establecimiento}
+                    address={place.calle_numero}
+                    address2={place.address2}
+                    distance={distance}
+                    iconListing={place.iconListing}
+                    iconShop={place.iconShop}
                 />
-            </Fragment>
-        );
-    });
+            );
+        });
+
+        return listOfPlaces;
+    }, [places]);
+
+    // const listItems = dummyData.map((item, id) => {
+    //     return <Fragment key={`item-${id}`}></Fragment>;
+    // });
     return (
         <div className={styles.root}>
             <div className={styles.placesText}>
@@ -96,7 +41,7 @@ const ItemResults = () => {
                     </a>
                 </span>
             </div>
-            <div>{listItems}</div>
+            <div>{formatedPlaces}</div>
         </div>
     );
 };

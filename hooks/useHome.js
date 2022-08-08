@@ -4,7 +4,16 @@ const useHome = (props) => {
     const [currentPosition, setCurrentPosition] = useState({});
 
     const handleConsultPlaces = async ({ latitude, longitude }) => {
-        await fetch('/api/newConsult');
+        const fetchOptions = {
+            method: 'post',
+            body: JSON.stringify({ latitude, longitude }),
+            headers: {
+                'Content-Type':'application/json'
+            }
+        };
+        const respose = await fetch('/api/newConsult', fetchOptions);
+        const data = await respose.json();
+        console.log(data)
     };
 
     /*Position Methods*/
@@ -37,7 +46,7 @@ const useHome = (props) => {
         }
     }, [currentPosition]);
 
-    return { errorConsultPosition };
+    return { errorConsultPosition, currentPosition };
 };
 
 export default useHome;

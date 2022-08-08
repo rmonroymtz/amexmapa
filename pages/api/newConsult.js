@@ -1,8 +1,23 @@
 export default async function consult(req, res) {
     try {
+        if (req.method !== 'post' && req.method !== 'POST') {
+            res.status(404).send('Method no allowed' + req.method);
+            return;
+        }
+
+        if (!req.body || req.body === '') {
+            res.status(404).send('Body is required');
+            return;
+        }
+
+        if (!req.body.latitude || !req.body.longitude) {
+            req.status(404).send('Lantitude and logitude required');
+            return;
+        }
+
         const options = {
-            Latitude: '0',
-            Longitude: '0',
+            Latitude: `${req.body.latitude}`,
+            Longitude: `${req.body.longitude}`,
             Distance: '25',
             Industria: '',
             SubIndustria: '',
@@ -12,10 +27,13 @@ export default async function consult(req, res) {
             Segmento4: '0'
         };
 
-        const myHeaders = new Headers()
+        const myHeaders = new Headers();
 
-        myHeaders.append('Content-Type', 'application/json')
-        myHeaders.append('x-api-key', 'YeB8a9o4fG47h7aFe52Fl6EgOewuELoi4FsMZhKn')
+        myHeaders.append('Content-Type', 'application/json');
+        myHeaders.append(
+            'x-api-key',
+            'YeB8a9o4fG47h7aFe52Fl6EgOewuELoi4FsMZhKn'
+        );
 
         const consult = {
             method: 'POST',
@@ -30,7 +48,7 @@ export default async function consult(req, res) {
 
         const data = await response.text();
 
-        res.send(data)
+        res.send(data);
     } catch (error) {
         console.log(error);
     }

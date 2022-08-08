@@ -1,19 +1,26 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './map.module.css';
 const Map = (props) => {
-    const {markers} = props;
+    const [map, setMap] = useState(null);
+    const { markers, coords } = props;
     const mapRef = useRef();
 
     const handleCreateGoogleMap = () => {
-        new google.maps.Map(mapRef.current, {
-            center: { lat: 19.8124391, lng: -99.0993173 },
+        const map = new google.maps.Map(mapRef.current, {
+            center: { lat: coords.latitude, lng: coords.longitude },
             zoom: 12
+        });
+
+        new google.maps.Marker({
+            position: { lat: coords.latitude, lng: coords.longitude },
+            map,
+            title: 'a huevo'
         });
     };
 
     useEffect(() => {
         handleCreateGoogleMap();
-    }, []);
+    }, [coords]);
 
     return <div id="mapContainer" className={styles.map} ref={mapRef}></div>;
 };

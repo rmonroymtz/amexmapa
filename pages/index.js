@@ -14,11 +14,11 @@ export default function Home(props) {
     const isMobile = onlyWidth<=768;
 
     const talonProps = useHome();
-    const { errorConsultPosition } = talonProps;
+    const { errorConsultPosition, currentPosition } = talonProps;
 
-    if(errorConsultPosition.code){
-        if(errorConsultPosition.code === 1){
-            return 'Bloqueado por el usuario'
+    if (errorConsultPosition.code) {
+        if (errorConsultPosition.code === 1) {
+            return 'Bloqueado por el usuario';
         }
         return errorConsultPosition.code;
     }

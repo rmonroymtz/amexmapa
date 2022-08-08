@@ -1,10 +1,9 @@
-import React, {Fragment} from 'react'
-import styles from './itemResults.module.css'
-import {IconNewListing, IconShopSmall} from "../Icons/icons";
-import Item from "../Item/item";
+import React, { Fragment } from 'react';
+import styles from './itemResults.module.css';
+import { IconNewListing, IconShopSmall } from '../Icons/icons';
+import Item from '../Item/item';
 
-const ItemResults =()=> {
-
+const ItemResults = () => {
     const dummyData = [
         {
             type: 'C', // Icon with type of commerce
@@ -12,8 +11,8 @@ const ItemResults =()=> {
             address: 'Calle x por avenida equis',
             address2: 'Merida Yucatan',
             distance: '10km',
-            iconListing: <IconNewListing/>,
-            iconShop: <IconShopSmall/>    //icon
+            iconListing: <IconNewListing />,
+            iconShop: <IconShopSmall /> //icon
         },
         {
             type: 'C', // Icon with type of commerce
@@ -21,8 +20,8 @@ const ItemResults =()=> {
             address: 'Calle x por avenida equis',
             address2: 'Merida Yucatan',
             distance: '10km',
-            iconListing: <IconNewListing/>,
-            iconShop:  <IconShopSmall/>   //icon
+            iconListing: <IconNewListing />,
+            iconShop: <IconShopSmall /> //icon
         },
         {
             type: 'C', // Icon with type of commerce
@@ -31,7 +30,7 @@ const ItemResults =()=> {
             address2: 'Merida Yucatan',
             distance: '10km',
             iconListing: ' ',
-            iconShop: ' '    //icon
+            iconShop: ' ' //icon
         },
         {
             type: 'C', // Icon with type of commerce
@@ -39,7 +38,7 @@ const ItemResults =()=> {
             address: 'Calle x por avenida equis',
             address2: 'Merida Yucatan',
             distance: '10km',
-            iconShop: <IconShopSmall/>    //icon
+            iconShop: <IconShopSmall /> //icon
         },
         {
             type: 'C', // Icon with type of commerce
@@ -47,8 +46,8 @@ const ItemResults =()=> {
             address: 'Calle x por avenida equis',
             address2: 'Merida Yucatan',
             distance: '10km',
-            iconListing: <IconNewListing/>,
-            iconShop: ''    //icon
+            iconListing: <IconNewListing />,
+            iconShop: '' //icon
         },
         {
             type: 'C', // Icon with type of commerce
@@ -56,7 +55,7 @@ const ItemResults =()=> {
             address: 'Calle x por avenida equis',
             address2: 'Merida Yucatan',
             distance: '10km',
-            iconShop: <IconShopSmall/>    //icon
+            iconShop: <IconShopSmall /> //icon
         },
         {
             type: 'C', // Icon with type of commerce
@@ -64,15 +63,14 @@ const ItemResults =()=> {
             address: 'Calle x por avenida equis',
             address2: 'Merida Yucatan',
             distance: '10km',
-            iconListing: <IconNewListing/>,
-            iconShop: ''    //icon
+            iconListing: <IconNewListing />,
+            iconShop: '' //icon
         }
+    ];
 
-    ]
-
-    const listItems = dummyData.map((item)=>{
+    const listItems = dummyData.map((item, id) => {
         return (
-            <Fragment >
+            <Fragment key={`item-id`}>
                 <Item
                     type={item.type}
                     name={item.name}
@@ -83,13 +81,14 @@ const ItemResults =()=> {
                     iconShop={item.iconShop}
                 />
             </Fragment>
-        )
-    })
-    return(
+        );
+    });
+    return (
         <div className={styles.root}>
             <div className={styles.placesText}>
                 <span className={styles.messagePlacesText}>
-                    Estamos haciendo que sea más fácil encontrar negocios abiertos durante COVID-19.
+                    Estamos haciendo que sea más fácil encontrar negocios
+                    abiertos durante COVID-19.
                 </span>
                 <span>
                     <a href="" className={styles.showPlaces}>
@@ -97,12 +96,9 @@ const ItemResults =()=> {
                     </a>
                 </span>
             </div>
-            <div>
-                {listItems}
-            </div>
+            <div>{listItems}</div>
         </div>
-
-    )
-}
+    );
+};
 
 export default ItemResults;

@@ -3,12 +3,11 @@ import { useWindowWidth } from '@react-hook/window-size';
 import styles from './sidebar.module.css';
 import ItemResults from '../ItemResults/itemResults';
 import Filters from '../Filters/filters';
-import useSidebar from './useSidebar';
 
 const Sidebar = (props) => {
     const onlyWidth = useWindowWidth();
     const [isMobile, setIsMobile] = useState(false);
-    console.log(props.places);
+
     useEffect(() => {
         if (onlyWidth <= 768) {
             setIsMobile(true);

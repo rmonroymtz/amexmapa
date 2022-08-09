@@ -38,7 +38,12 @@ export default function Home(props) {
                 <Sidebar places={activePlaces} />
                 <div className={styles.containerMap}>
                     <Details />
-                    {isMobile ? null : <Map coords={currentPosition.coords} />}
+                    {isMobile ? null : (
+                        <Map
+                            coords={currentPosition.coords}
+                            places={activePlaces}
+                        />
+                    )}
                 </div>
             </div>
 

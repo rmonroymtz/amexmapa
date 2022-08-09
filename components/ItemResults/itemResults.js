@@ -25,9 +25,7 @@ const ItemResults = ({ places }) => {
         return listOfPlaces;
     }, [places]);
 
-    // const listItems = dummyData.map((item, id) => {
-    //     return <Fragment key={`item-${id}`}></Fragment>;
-    // });
+
     return (
         <div className={styles.root}>
             <div className={styles.placesText}>

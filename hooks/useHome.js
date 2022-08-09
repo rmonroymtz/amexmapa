@@ -1,13 +1,14 @@
 import { useCallback, useEffect, useState } from 'react';
-
-const PAGE_SIZE = 10;
+import usePagination from './usePagination';
 
 const useHome = (props) => {
     const [errorConsultPosition, setErrorConsultPosition] = useState({});
     const [currentPosition, setCurrentPosition] = useState({});
     const [places, setPlaces] = useState(null);
-    const [activePlaces, setActivePlaces] = useState([]);
-    const [selectedPlace, setSelectedPlace] = useState({});
+
+    const talonPagination = usePagination({
+        places
+    });
 
     /**
      * consul api places
@@ -24,7 +25,6 @@ const useHome = (props) => {
         const data = await respose.json();
         if (data.body) {
             setPlaces(data.body.slice(0, 100));
-            setActivePlaces(data.body.slice(0, 10));
         }
     };
 
@@ -75,7 +75,7 @@ const useHome = (props) => {
         currentPosition,
         handleSelectPlace,
         places,
-        activePlaces
+        ...talonPagination
     };
 };
 

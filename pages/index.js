@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+import { useWindowWidth } from '@react-hook/window-size';
 import styles from '../styles/Home.module.css';
 import Header from '../components/Header/header';
 import Sidebar from '../components/Sidebar/sidebar';
@@ -6,19 +8,22 @@ import Details from '../components/Details/details';
 import Footer from '../components/Footer';
 import Map from '../components/Map';
 import useHome from '../hooks/useHome';
-import {useWindowWidth} from "@react-hook/window-size";
 
 export default function Home(props) {
+    const [isMobile, setIsMobile] = useState(false);
+    const onlyWidth = useWindowWidth();
 
-    const onlyWidth = useWindowWidth()
-    const isMobile = onlyWidth<=768;
+    useEffect(() => {
+        setIsMobile(onlyWidth <= 768);
+    }, [onlyWidth]);
 
     const talonProps = useHome();
-    const { errorConsultPosition } = talonProps;
+    const { errorConsultPosition, currentPosition, places, activePlaces } =
+        talonProps;
 
-    if(errorConsultPosition.code){
-        if(errorConsultPosition.code === 1){
-            return 'Bloqueado por el usuario'
+    if (errorConsultPosition.code) {
+        if (errorConsultPosition.code === 1) {
+            return 'Bloqueado por el usuario';
         }
         return errorConsultPosition.code;
     }
@@ -30,10 +35,15 @@ export default function Home(props) {
             <Warning />
 
             <div className={styles.containerMain}>
-                <Sidebar />
+                <Sidebar places={activePlaces} />
                 <div className={styles.containerMap}>
                     <Details />
-                    {isMobile? null:<Map />}
+                    {isMobile ? null : (
+                        <Map
+                            coords={currentPosition.coords}
+                            places={activePlaces}
+                        />
+                    )}
                 </div>
             </div>
 

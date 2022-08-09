@@ -4,10 +4,10 @@ import {IconShopSmall, IconPhone, IconShare, IconChevronLeft} from "../Icons/ico
 
 const Details =(props)=> {
 
-    const [seeLess, setSeeLess] = useState(true)
+    const [seeLess, setSeeLess] = useState(false)
 
     const close=()=> {
-        setSeeLess(false)
+        setSeeLess(prevState => !prevState)
     }
 
     const visitText = 'Nota: Los horarios y servicios pueden variar debido a COVID-19. Te recomendamos consultar directamente con el Establecimiento para más detalles.'
@@ -75,7 +75,7 @@ const Details =(props)=> {
                             <div className={styles.titleContact}>
                                 Contacto
                             </div>
-                            <a href="tel:5551234567" className={styles.btnContact} target="_blank">
+                            <a href="tel:5551234567" rel="noreferrer" className={styles.btnContact} target="_blank">
                                 <div>
                                     <IconPhone className={styles.iconPhone}/>
                                 </div>

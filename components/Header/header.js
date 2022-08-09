@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import styles from './header.module.css';
 import {
     IconAmexSegurosBlue,
@@ -12,7 +12,11 @@ import {useWindowWidth} from "@react-hook/window-size";
 const Header = () => {
 
     const onlyWidth = useWindowWidth()
-    const isMobile = onlyWidth<=768;
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        setIsMobile(onlyWidth<=768);
+    }, [onlyWidth])
 
     const [active, setActive] = useState(false)
 

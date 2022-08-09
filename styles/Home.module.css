@@ -7,11 +7,17 @@
 }
 
 .containerMain {
-  display: flex;
+  display: inherit;
 }
 
 .containerMap {
   display: flex;
   min-width: 75%;
   padding: 1rem 0 0 0.5rem;
+}
+
+@media (min-width: 768px) {
+    .containerMain {
+        display: flex;
+    }
 }

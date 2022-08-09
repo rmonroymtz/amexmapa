@@ -8,6 +8,7 @@ import Details from '../components/Details/details';
 import Footer from '../components/Footer';
 import Map from '../components/Map';
 import useHome from '../hooks/useHome';
+import ModalWelcome from '../components/ModalWelcome';
 
 export default function Home(props) {
     const [isMobile, setIsMobile] = useState(false);
@@ -30,6 +31,8 @@ export default function Home(props) {
 
     return (
         <div className={styles.container}>
+            <ModalWelcome/>
+
             <Header />
 
             <Warning />

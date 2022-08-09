@@ -27,30 +27,6 @@ const Filters =()=>{
                         </div>
                     </div>
                     <div className={styles.parent}>
-                        <div className={styles.div1}>
-                            <input type="checkbox"/>
-                        </div>
-                        <div className={styles.div2}>
-                            Shop Small <IconShopSmall/>
-                        </div>
-                        <div className={styles.div3}>
-                            <input type="checkbox"/>
-                        </div>
-                        <div className={styles.div4}>
-                            Nuevo listado
-                        </div>
-                        <div className={styles.div5}>
-                            <input type="checkbox"/>
-                        </div>
-                        <div className={styles.div6}>
-                            Lugares con transacciones recientes
-                        </div>
-                        <div className={styles.div7}>
-                            <input type="checkbox"/>
-                        </div>
-                        <div className={styles.div8}>
-                            Pagos contactless
-                        </div>
 
                         <div className={styles.div9}>
                             CATEGORÍA
@@ -107,18 +83,6 @@ const Filters =()=>{
                     </span>
                     </button>
                 </div>
-
-                <div className={styles.containerSelect}>
-                    <select className={styles.selectOrder} name="" id="">
-                        <option value="">
-                            Resultados más buscados
-                        </option>
-                        <option value="">
-                            Ordenar por distancia
-                        </option>
-                    </select>
-                </div>
-
             </div>
 
         </div>

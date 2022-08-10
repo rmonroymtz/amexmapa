@@ -1,13 +1,14 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import usePagination from './usePagination';
 
 const useHome = (props) => {
     const [errorConsultPosition, setErrorConsultPosition] = useState({});
     const [currentPosition, setCurrentPosition] = useState({});
     const [places, setPlaces] = useState(null);
+    const mapInstanceRef = useRef();
 
     const talonPagination = usePagination({
-        places
+        listItems: places
     });
 
     /**
@@ -75,6 +76,7 @@ const useHome = (props) => {
         currentPosition,
         handleSelectPlace,
         places,
+        mapInstanceRef,
         ...talonPagination
     };
 };

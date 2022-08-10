@@ -21,8 +21,14 @@ export default function Home(props) {
     }, [onlyWidth]);
 
     const talonProps = useHome();
-    const {errorConsultPosition, currentPosition, places, activePlaces} =
-        talonProps;
+    const {
+        errorConsultPosition,
+        currentPosition,
+        activelistItems,
+        activePlaces,
+        mapInstanceRef,
+        places
+    } = talonProps;
 
     if (errorConsultPosition.code) {
         if (errorConsultPosition.code === 1) {
@@ -44,16 +50,16 @@ export default function Home(props) {
 
             {/* Main content */}
             <div className={styles.containerMain}>
-
-                <Sidebar places={activePlaces}/>
+                <Sidebar places={activelistItems} {...talonProps} />
                 <div className={styles.containerMap}>
                     <Details />
-                    {isMobile ? null : (
+                    {isMobile ? null : places ? (
                         <Map
+                            mapInstanceRef={mapInstanceRef}
                             coords={currentPosition.coords}
-                            places={activePlaces}
+                            places={places}
                         />
-                    )}
+                    ) : null}
                 </div>
             </div>
 

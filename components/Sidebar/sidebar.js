@@ -3,18 +3,16 @@ import { useWindowWidth } from '@react-hook/window-size';
 import styles from './sidebar.module.css';
 import ItemResults from '../ItemResults/itemResults';
 import Filters from '../Filters/filters';
+import Pagination from '../Pagination';
 
 const Sidebar = (props) => {
+    const { currentPage, handleNextPage, handlePrevPage, handleChangePage } =
+        props;
     const onlyWidth = useWindowWidth();
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
-        if (onlyWidth <= 768) {
-            setIsMobile(true);
-        }
-        return () => {
-            setIsMobile(false);
-        };
+        setIsMobile(onlyWidth <= 768);
     }, [onlyWidth]);
 
     return (
@@ -42,11 +40,16 @@ const Sidebar = (props) => {
                 )}
             </div>
             <Filters />
-
             <div className={styles.containerResults}>
-                <ItemResults places={props.places} />
+                <ItemResults places={props.activelistItems} />
             </div>
-            <div className={styles.containerPagination}>Pagination</div>
+            <Pagination
+                styles={styles}
+                currentPage={currentPage}
+                handleNextPage={handleNextPage}
+                handlePrevPage={handlePrevPage}
+                handleChangePage={handleChangePage}
+            />
         </div>
     );
 };

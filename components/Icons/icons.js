@@ -462,6 +462,211 @@ const IconAmexSegurosWhite = (props) => (
         </g>
     </svg>
 );
+
+const IconPinWhite = (props) => (
+    <svg
+        id="Capa_1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlnsXlink="http://www.w3.org/1999/xlink"
+        viewBox="0 0 64 64"
+        {...props}
+        height={20}
+        width={20}
+    >
+        <defs>
+            <style>
+                {
+                    ".pwcls-1{fill:none;}.pwcls-2{clip-path:url(#clippath);}.pwcls-3{fill:#fff;}.pwcls-4{fill:#116fcf;}"
+                }
+            </style>
+            <clipPath id="clippath">
+                <rect
+                    className="pwcls-1"
+                    x={10.73}
+                    y={2.73}
+                    width={42.54}
+                    height={57.18}
+                />
+            </clipPath>
+        </defs>
+        <g id="Grupo_11858">
+            <path
+                id="Trazado_150-2"
+                className="pwcls-4"
+                d="M32,63.69c.71,0,1.39-.31,1.87-.84,2.22-2.51,21.71-24.58,21.71-37.6,0-13.79-10.58-24.93-23.56-24.93S8.42,11.55,8.42,25.31c0,12.97,19.48,35.1,21.71,37.6,.49,.51,1.16,.79,1.87,.78m0-58.3c10.23,0,18.55,8.93,18.55,19.92,0,8.46-12.05,24.39-18.55,32.06-6.51-7.66-18.56-23.59-18.56-32.06,0-10.98,8.32-19.92,18.56-19.92h0Z"
+            />
+            <path
+                id="Trazado_153"
+                className="pwcls-3"
+                d="M18.79,10.95l-5.03,8.91v11.37l6.47,10.66,6.71,9.86,4.47,5.63,5.4-5.63,7.89-11.08,6.32-9.43v-11.37l-6.32-11.38-12.26-3.39-11.37,3.39-2.27,2.47Z"
+            />
+            <g className="cls-2">
+                <g id="Grupo_11855">
+                    <path
+                        id="Trazado_151"
+                        className="pwcls-3"
+                        d="M32,59.91c.64,0,1.26-.28,1.68-.76,2-2.26,19.59-22.18,19.59-33.93,0-12.44-9.55-22.49-21.26-22.49S10.73,12.88,10.73,25.29c0,11.7,17.57,31.66,19.59,33.93,.44,.46,1.05,.72,1.68,.7m0-52.6c9.23,0,16.74,8.06,16.74,17.97,0,7.63-10.87,22.01-16.74,28.93-5.87-6.91-16.75-21.28-16.75-28.93,0-9.91,7.51-17.97,16.75-17.97Z"
+                    />
+                    <path
+                        id="Trazado_152"
+                        className="pwcls-4"
+                        d="M32,31.32c-4.69,0-8.49-3.8-8.49-8.49s3.8-8.49,8.49-8.49c4.69,0,8.49,3.8,8.49,8.49,0,4.69-3.8,8.48-8.49,8.49"
+                    />
+                </g>
+            </g>
+        </g>
+    </svg>
+);
+
+const IconPinRed = (props) => (
+    <svg
+        id="Capa_1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlnsXlink="http://www.w3.org/1999/xlink"
+        viewBox="0 0 64 64"
+        {...props}
+        height={20}
+        width={20}
+    >
+        <defs>
+            <style>
+                {
+                    ".prcls-1{fill:none;}.prcls-2{clip-path:url(#clippath);}.prcls-3{fill:#fff;}.prcls-4{fill:#b22c11;}"
+                }
+            </style>
+            <clipPath id="clippath">
+                <rect
+                    className="prcls-1"
+                    x={10.73}
+                    y={2.73}
+                    width={42.54}
+                    height={57.18}
+                />
+            </clipPath>
+        </defs>
+        <g id="Grupo_11857">
+            <path
+                id="Trazado_146-2"
+                className="prcls-3"
+                d="M32,63.69c.71,0,1.39-.31,1.87-.84,2.22-2.51,21.71-24.58,21.71-37.6,0-13.79-10.58-24.93-23.56-24.93S8.42,11.55,8.42,25.31c0,12.97,19.48,35.1,21.71,37.6,.49,.51,1.16,.79,1.87,.78m0-58.3c10.23,0,18.55,8.93,18.55,19.92,0,8.46-12.05,24.39-18.55,32.06-6.51-7.66-18.56-23.59-18.56-32.06,0-10.98,8.32-19.92,18.56-19.92h0Z"
+            />
+            <path
+                id="Trazado_147"
+                className="prcls-4"
+                d="M18.79,10.94l-5.03,8.91v11.37l6.47,10.66,6.71,9.86,4.47,5.63,5.4-5.63,7.89-11.08,6.32-9.43v-11.37l-6.32-11.38-12.26-3.39-11.37,3.39-2.27,2.47Z"
+            />
+            <g className="prcls-2">
+                <g id="Grupo_11854">
+                    <path
+                        id="Trazado_148"
+                        className="prcls-4"
+                        d="M32,59.91c.64,0,1.26-.28,1.68-.76,2-2.26,19.59-22.18,19.59-33.93,0-12.44-9.54-22.49-21.26-22.49S10.73,12.87,10.73,25.28c0,11.7,17.57,31.66,19.59,33.93,.44,.46,1.05,.72,1.68,.7m0-52.6c9.23,0,16.74,8.06,16.74,17.97,0,7.63-10.87,22.01-16.74,28.93-5.87-6.91-16.75-21.28-16.75-28.93,0-9.91,7.51-17.97,16.75-17.97Z"
+                    />
+                    <path
+                        id="Trazado_149"
+                        className="prcls-3"
+                        d="M32,31.32c-4.69,0-8.49-3.8-8.49-8.49s3.8-8.49,8.49-8.49,8.49,3.8,8.49,8.49c0,4.69-3.8,8.48-8.49,8.49"
+                    />
+                </g>
+            </g>
+        </g>
+    </svg>
+);
+
+const IconPinblue = (props) => (
+    <svg
+        id="Capa_1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlnsXlink="http://www.w3.org/1999/xlink"
+        viewBox="0 0 64 64"
+        {...props}
+        height={20}
+        width={20}
+    >
+        <defs>
+            <style>
+                {
+                    ".pbcls-1{fill:none;}.pbcls-2{clip-path:url(#clippath);}.pbcls-3{fill:#fff;}.pbcls-4{fill:#116fcf;}"
+                }
+            </style>
+            <clipPath id="clippath">
+                <rect
+                    className="pbcls-1"
+                    x={10.73}
+                    y={2.73}
+                    width={42.54}
+                    height={57.18}
+                />
+            </clipPath>
+        </defs>
+        <g id="Grupo_11856">
+            <path
+                id="Trazado_144-2"
+                className="pbcls-3"
+                d="M32,63.69c.71,0,1.39-.31,1.87-.84,2.22-2.51,21.71-24.58,21.71-37.6,0-13.79-10.58-24.93-23.56-24.93S8.42,11.55,8.42,25.31c0,12.97,19.48,35.1,21.71,37.6,.49,.51,1.16,.79,1.87,.78m0-58.3c10.23,0,18.55,8.93,18.55,19.92,0,8.46-12.05,24.39-18.55,32.06-6.51-7.66-18.56-23.59-18.56-32.06,0-10.98,8.32-19.92,18.56-19.92h0Z"
+            />
+            <path
+                id="Trazado_145"
+                className="pbcls-4"
+                d="M18.79,10.95l-5.03,8.91v11.37l6.47,10.66,6.71,9.86,4.47,5.63,5.4-5.63,7.89-11.08,6.32-9.43v-11.37l-6.32-11.38-12.26-3.39-11.37,3.39-2.27,2.47Z"
+            />
+            <g className="pbcls-2">
+                <g id="Grupo_11853">
+                    <path
+                        id="Trazado_141"
+                        className="pbcls-4"
+                        d="M32,59.91c.64,0,1.26-.28,1.68-.76,2-2.26,19.59-22.18,19.59-33.93,0-12.44-9.54-22.49-21.26-22.49S10.73,12.87,10.73,25.28c0,11.7,17.57,31.66,19.59,33.93,.44,.46,1.05,.72,1.68,.7m0-52.6c9.23,0,16.74,8.06,16.74,17.97,0,7.63-10.87,22.01-16.74,28.93-5.87-6.91-16.75-21.28-16.75-28.93,0-9.91,7.51-17.97,16.75-17.97Z"
+                    />
+                    <path
+                        id="Trazado_142"
+                        className="pbcls-3"
+                        d="M32,31.32c-4.69,0-8.49-3.8-8.49-8.49s3.8-8.49,8.49-8.49,8.49,3.8,8.49,8.49c0,4.69-3.8,8.48-8.49,8.49"
+                    />
+                </g>
+            </g>
+        </g>
+    </svg>
+);
+
+const IconDotBlue = (props) => (
+    <svg
+        id="Capa_1"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 64 64"
+        {...props}
+        height={5}
+        width={5}
+    >
+        <defs>
+            <style>{".dbcls-1{fill:#116fcf;}"}</style>
+        </defs>
+        <circle id="Elipse_42" className="dbcls-1" cx={32} cy={32} r={32} />
+    </svg>
+);
+
+const IconDotWhite = (props) => (
+    <svg
+        id="Capa_1"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 64 64"
+        {...props}
+        height={5}
+        width={5}
+    >
+        <defs>
+            <style>
+                {
+                    ".dwcls-1{fill:#fff;}.dwcls-2{fill:none;stroke:#116fcf;stroke-width:2.5px;}"
+                }
+            </style>
+        </defs>
+        <g id="Elipse_43">
+            <circle className="dwcls-1" cx={32} cy={32} r={32} />
+            <circle className="dwcls-2" cx={32} cy={32} r={30.75} />
+        </g>
+    </svg>
+);
+
 export {
     IconLocation,
     IconFilter,
@@ -475,5 +680,10 @@ export {
     IconHamburguer,
     IconAmexSegurosBlue,
     IconAmexSegurosWhite,
+    IconPinWhite,
+    IconPinRed,
+    IconPinblue,
+    IconDotBlue,
+    IconDotWhite,
     LogoAmex
 };

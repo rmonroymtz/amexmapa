@@ -1,0 +1,30 @@
+.root {
+    background: rgb(0, 135, 103);
+    color: rgb(255, 255, 255);
+    padding: 10px;
+    position: fixed;
+    font-size: 15px;
+    display: flex;
+    flex-direction: row;
+    z-index: 1;
+    writing-mode: vertical-rl;
+    transform: rotateZ(180deg);
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    right: 0;
+    cursor: pointer;
+    bottom: 30%;
+    height: fit-content;
+}
+
+.root:active {
+    outline: 1px dashed #53565a;
+    outline-offset: 3px;
+}
+
+@media (min-width: 768px) {
+
+    .root {
+        top: 50%;
+    }
+}

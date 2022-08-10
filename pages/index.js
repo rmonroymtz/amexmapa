@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useWindowWidth } from '@react-hook/window-size';
+import {useEffect, useState} from 'react';
+import {useWindowWidth} from '@react-hook/window-size';
 import styles from '../styles/Home.module.css';
 import Header from '../components/Header/header';
 import Sidebar from '../components/Sidebar/sidebar';
@@ -9,6 +9,8 @@ import Footer from '../components/Footer';
 import Map from '../components/Map';
 import useHome from '../hooks/useHome';
 import ModalWelcome from '../components/ModalWelcome';
+import Opinion from '../components/Opinion';
+import {IconDotBlue, IconDotWhite, IconPinblue, IconPinRed, IconPinWhite} from "../components/Icons/icons";
 
 export default function Home(props) {
     const [isMobile, setIsMobile] = useState(false);
@@ -19,7 +21,7 @@ export default function Home(props) {
     }, [onlyWidth]);
 
     const talonProps = useHome();
-    const { errorConsultPosition, currentPosition, places, activePlaces } =
+    const {errorConsultPosition, currentPosition, places, activePlaces} =
         talonProps;
 
     if (errorConsultPosition.code) {
@@ -31,14 +33,19 @@ export default function Home(props) {
 
     return (
         <div className={styles.container}>
+            {/*Modal welcome only once open the pageload*/}
             <ModalWelcome/>
+            {/*Header Mobile/desk*/}
+            <Header/>
+            {/*Button green for new window opinion*/}
+            <Opinion/>
+            {/*Warning message about Covid19*/}
+            <Warning/>
 
-            <Header />
-
-            <Warning />
-
+            {/* Main content */}
             <div className={styles.containerMain}>
-                <Sidebar places={activePlaces} />
+
+                <Sidebar places={activePlaces}/>
                 <div className={styles.containerMap}>
                     <Details />
                     {isMobile ? null : (

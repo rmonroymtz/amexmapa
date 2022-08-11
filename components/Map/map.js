@@ -1,10 +1,9 @@
-import { Fragment, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from './map.module.css';
 const Map = (props) => {
-    const { places, mapInstanceRef } = props;
-    const { markers, coords } = props;
+    const { places, mapInstanceRef, coords, setMarkerPlaces, markerPlaces } =
+        props;
     const mapRef = useRef();
-    const testRef2 = useRef([]);
 
     const [mapIsReady, setMapIsReady] = useState(false);
 
@@ -19,13 +18,6 @@ const Map = (props) => {
             streetViewControl: false
         });
 
-        mapInstanceRef.current.addListener('center_changed', () => {
-            console.log(
-                'Se cambio en centro: ',
-                mapInstanceRef.current.getZoom()
-            );
-        });
-
         setMapIsReady(true);
     };
 
@@ -36,9 +28,17 @@ const Map = (props) => {
     useEffect(() => {
         if (!mapIsReady) return;
 
-        const infoWindow = new google.maps.InfoWindow();
+        if (markerPlaces.length) {
+            console.log('Tenemos que limpiar los');
+        }
 
-        places.forEach((place) => {
+        new google.maps.Marker({
+            position: { lat: coords.latitude, lng: coords.longitude },
+            map: mapInstanceRef.current,
+            icon: '/pinRed.png'
+        });
+
+        const markers = places.map((place) => {
             const marker = new google.maps.Marker({
                 position: {
                     lat: parseFloat(place.latitude),
@@ -46,33 +46,21 @@ const Map = (props) => {
                 },
                 map: mapInstanceRef.current,
                 title: place.nombre_establecimiento,
-                icon: `https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png`
             });
 
-
-            marker.addListener('mouseover', () => {
-                infoWindow.setContent(`<p styles="{font-weight: bold;}"> ${marker.getTitle()}</p>`);
-                infoWindow.open(marker.getMap(), marker);
-            });
-
-            marker.addListener('mouseout', () => {
-                infoWindow.close();
-            });
-
-            const event = marker.addListener('click', () => {
-                infoWindow.close();
-                infoWindow.setContent(marker.getTitle());
-                infoWindow.open(marker.getMap(), marker);
-            });
-
-            testRef2.current.push(event);
+            return marker;
         });
-        // google.maps.event.addDomListener(mapRef.current, 'mouseover', () => {
-        //     window.alert('Map was clicked!');
-        // });
 
+        setMarkerPlaces(markers);
         setMapIsReady(false);
-    }, [mapIsReady]);
+    }, [
+        mapIsReady,
+        setMarkerPlaces,
+        coords,
+        markerPlaces,
+        mapInstanceRef,
+        places
+    ]);
 
     return <div id="mapContainer" className={styles.map} ref={mapRef}></div>;
 };

@@ -6,8 +6,16 @@ import Filters from '../Filters/filters';
 import Pagination from '../Pagination';
 
 const Sidebar = (props) => {
-    const { currentPage, handleNextPage, handlePrevPage, handleChangePage } =
-        props;
+    const {
+        activelistItems,
+        currentPage,
+        handleNextPage,
+        handlePrevPage,
+        handleChangePage,
+        handleSideBarMouseOver,
+        handleSideBarMouseOut,
+        pageSize
+    } = props;
     const onlyWidth = useWindowWidth();
     const [isMobile, setIsMobile] = useState(false);
 
@@ -41,7 +49,14 @@ const Sidebar = (props) => {
             </div>
             <Filters />
             <div className={styles.containerResults}>
-                <ItemResults places={props.activelistItems} />
+                <ItemResults
+                    places={activelistItems}
+                    handleSideBarMouseOver={handleSideBarMouseOver}
+                    handleSideBarMouseOut={handleSideBarMouseOut}
+                    activeItem={props.activeItem}
+                    pageSize={pageSize}
+                    currentPage={currentPage}
+                />
             </div>
             <Pagination
                 styles={styles}
@@ -49,6 +64,7 @@ const Sidebar = (props) => {
                 handleNextPage={handleNextPage}
                 handlePrevPage={handlePrevPage}
                 handleChangePage={handleChangePage}
+                handleSideBarMouseOver={handleSideBarMouseOver}
             />
         </div>
     );

@@ -1,5 +1,5 @@
-import {useEffect, useState} from 'react';
-import {useWindowWidth} from '@react-hook/window-size';
+import { useEffect, useState } from 'react';
+import { useWindowWidth } from '@react-hook/window-size';
 import styles from '../styles/Home.module.css';
 import Header from '../components/Header/header';
 import Sidebar from '../components/Sidebar/sidebar';
@@ -10,7 +10,13 @@ import Map from '../components/Map';
 import useHome from '../hooks/useHome';
 import ModalWelcome from '../components/ModalWelcome';
 import Opinion from '../components/Opinion';
-import {IconDotBlue, IconDotWhite, IconPinblue, IconPinRed, IconPinWhite} from "../components/Icons/icons";
+import {
+    IconDotBlue,
+    IconDotWhite,
+    IconPinblue,
+    IconPinRed,
+    IconPinWhite
+} from '../components/Icons/icons';
 
 export default function Home(props) {
     const [isMobile, setIsMobile] = useState(false);
@@ -25,9 +31,10 @@ export default function Home(props) {
         errorConsultPosition,
         currentPosition,
         activelistItems,
-        activePlaces,
         mapInstanceRef,
-        places
+        places,
+        setMarkerPlaces,
+        markerPlaces
     } = talonProps;
 
     if (errorConsultPosition.code) {
@@ -40,13 +47,13 @@ export default function Home(props) {
     return (
         <div className={styles.container}>
             {/*Modal welcome only once open the pageload*/}
-            <ModalWelcome/>
+            <ModalWelcome />
             {/*Header Mobile/desk*/}
-            <Header/>
+            <Header />
             {/*Button green for new window opinion*/}
-            <Opinion/>
+            <Opinion />
             {/*Warning message about Covid19*/}
-            <Warning/>
+            <Warning />
 
             {/* Main content */}
             <div className={styles.containerMain}>
@@ -55,6 +62,8 @@ export default function Home(props) {
                     <Details />
                     {isMobile ? null : places ? (
                         <Map
+                            setMarkerPlaces={setMarkerPlaces}
+                            markerPlaces={markerPlaces}
                             mapInstanceRef={mapInstanceRef}
                             coords={currentPosition.coords}
                             places={places}

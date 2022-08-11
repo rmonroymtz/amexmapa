@@ -1,7 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 
-const usePagination = ({ pageSize = 10, listItems = [] }) => {
-
+const usePagination = ({
+    pageSize = 10,
+    listItems = [],
+    markerPlaces = []
+}) => {
     const [activelistItems, setActivelistItems] = useState([]);
     const [totalPages, setTotalPages] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
@@ -21,6 +24,61 @@ const usePagination = ({ pageSize = 10, listItems = [] }) => {
         const newList = listItems.slice(startIndex, startIndex + 10);
         setActivelistItems(newList);
     }, [currentPage]);
+
+    useEffect(() => {
+        if (!markerPlaces.length) {
+            return;
+        }
+        const startIndex = Math.floor(currentPage - 1) * pageSize;
+        const lastIndex = startIndex + 10;
+        const infoWindow = new google.maps.InfoWindow();
+        markerPlaces.forEach((marker, index) => {
+            if (index >= startIndex && index < lastIndex) {
+                marker.setIcon('/pinBlue.png');
+
+                marker.addListener('mouseover', () => {
+                    infoWindow.setContent(
+                        `<p styles="{font-weight: bold;}"> ${marker.getTitle()}</p>`
+                    );
+                    infoWindow.open(marker.getMap(), marker);
+                    marker.setIcon('/pinBlueHover.png');
+                });
+
+                marker.addListener('mouseout', () => {
+                    marker.setIcon(`/pinBlue.png`);
+                    infoWindow.close();
+                });
+
+                marker.addListener('click', () => {
+                    infoWindow.close();
+                    infoWindow.setContent(marker.getTitle());
+                    infoWindow.open(marker.getMap(), marker);
+                });
+            } else {
+                marker.setIcon(`/dotBlue.png`);
+
+                marker.addListener('mouseover', () => {
+                    infoWindow.setContent(
+                        `<p styles="{font-weight: bold;}"> ${marker.getTitle()}</p>`
+                    );
+                    infoWindow.open(marker.getMap(), marker);
+                    marker.setIcon('/dotBlueHover.png');
+                });
+
+                marker.addListener('mouseout', () => {
+                    marker.setIcon(`/dotBlue.png`);
+                    infoWindow.close();
+                });
+
+                marker.addListener('click', () => {
+                    console.log('Estoy funcnando');
+                    infoWindow.close();
+                    infoWindow.setContent(marker.getTitle());
+                    infoWindow.open(marker.getMap(), marker);
+                });
+            }
+        });
+    }, [markerPlaces, currentPage]);
 
     const handleNextPage = useCallback(() => {
         if (currentPage === totalPages) {
@@ -46,7 +104,8 @@ const usePagination = ({ pageSize = 10, listItems = [] }) => {
         handleNextPage,
         handlePrevPage,
         handleChangePage,
-        setActivelistItems
+        setActivelistItems,
+        pageSize
     };
 };
 

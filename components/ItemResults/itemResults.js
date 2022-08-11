@@ -3,9 +3,17 @@ import styles from './itemResults.module.css';
 import { IconNewListing, IconShopSmall } from '../Icons/icons';
 import Item from '../Item/item';
 
-const ItemResults = ({ places }) => {
+const ItemResults = ({
+    places,
+    handleSideBarMouseOver = () => {},
+    activeItem,
+    handleSideBarMouseOut,
+    currentPage,
+    pageSize
+}) => {
     const formatedPlaces = useMemo(() => {
         if (!places) return null;
+        const startIndex = Math.floor(currentPage - 1) * pageSize;
         const listOfPlaces = places.map((place, id) => {
             const distance = `${parseFloat(place.distance_km).toFixed(1)} km`;
             return (
@@ -18,13 +26,15 @@ const ItemResults = ({ places }) => {
                     distance={distance}
                     iconListing={place.iconListing}
                     iconShop={place.iconShop}
+                    onMouseOver={handleSideBarMouseOver(id + startIndex)}
+                    onMouseOut={handleSideBarMouseOut(id + startIndex)}
+                    active={activeItem === id}
                 />
             );
         });
 
         return listOfPlaces;
-    }, [places]);
-
+    }, [places, activeItem, handleSideBarMouseOver]);
 
     return (
         <div className={styles.root}>

@@ -1,16 +1,23 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import usePagination from './usePagination';
+import { useSideBar } from '../components/Sidebar';
 
 const useHome = (props) => {
     const [errorConsultPosition, setErrorConsultPosition] = useState({});
     const [currentPosition, setCurrentPosition] = useState({});
     const [places, setPlaces] = useState(null);
+    const [markerPlaces, setMarkerPlaces] = useState([]);
     const mapInstanceRef = useRef();
 
     const talonPagination = usePagination({
+        markerPlaces,
         listItems: places
     });
 
+    const talonsUseSideBar = useSideBar({
+        markerPlaces,
+        ...talonPagination
+    });
     /**
      * consul api places
      */
@@ -29,10 +36,6 @@ const useHome = (props) => {
         }
     };
 
-    const handleSelectPlace = useCallback((place) => {
-        console.log('handleSelectPlace works');
-    }, []);
-
     /*Position Methods*/
 
     const onSuccessConsult = (position) => {
@@ -42,14 +45,6 @@ const useHome = (props) => {
     const onErrorConsult = (error) => {
         setErrorConsultPosition(error);
     };
-
-    /**
-     * Pagination helper
-     */
-
-    const handlePrevPage = useCallback(() => {}, []);
-
-    const handleNextPage = useCallback(() => {}, []);
 
     /*
      * Effect to consult current position
@@ -74,10 +69,12 @@ const useHome = (props) => {
     return {
         errorConsultPosition,
         currentPosition,
-        handleSelectPlace,
         places,
         mapInstanceRef,
-        ...talonPagination
+        setMarkerPlaces,
+        markerPlaces,
+        ...talonPagination,
+        ...talonsUseSideBar
     };
 };
 

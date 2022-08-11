@@ -19,12 +19,11 @@ export default async function consult(req, res) {
             Latitude: `${req.body.latitude}`,
             Longitude: `${req.body.longitude}`,
             Distance: '25',
-            Industria: '',
-            SubIndustria: '',
-            Segmento: '0',
-            Segmento2: '0',
-            Segmento3: '0',
-            Segmento4: '0'
+            Industria: ['Restaurant', 'a', 'b'],
+            SubIndustria: [],
+            Limit: '20',
+            StartLimit: '0',
+            DistanceType: 'km'
         };
 
         const myHeaders = new Headers();
@@ -47,7 +46,6 @@ export default async function consult(req, res) {
         );
 
         const data = await response.text();
-
         res.send(data);
     } catch (error) {
         console.log(error);

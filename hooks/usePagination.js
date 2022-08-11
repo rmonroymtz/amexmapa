@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 const usePagination = ({
     pageSize = 10,
@@ -8,6 +8,8 @@ const usePagination = ({
     const [activelistItems, setActivelistItems] = useState([]);
     const [totalPages, setTotalPages] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
+    const refInfoWindow = useRef();
+
     useEffect(() => {
         if (!listItems) {
             return;
@@ -29,9 +31,13 @@ const usePagination = ({
         if (!markerPlaces.length) {
             return;
         }
+
+        if (!refInfoWindow.current) {
+            refInfoWindow.current = new google.maps.InfoWindow();
+        }
         const startIndex = Math.floor(currentPage - 1) * pageSize;
         const lastIndex = startIndex + 10;
-        const infoWindow = new google.maps.InfoWindow();
+        const { current: infoWindow } = refInfoWindow;
         markerPlaces.forEach((marker, index) => {
             if (index >= startIndex && index < lastIndex) {
                 marker.setIcon('/pinBlue.png');
@@ -78,7 +84,7 @@ const usePagination = ({
                 });
             }
         });
-    }, [markerPlaces, currentPage]);
+    }, [markerPlaces, currentPage, pageSize]);
 
     const handleNextPage = useCallback(() => {
         if (currentPage === totalPages) {

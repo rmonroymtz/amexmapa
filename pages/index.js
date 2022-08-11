@@ -10,13 +10,6 @@ import Map from '../components/Map';
 import useHome from '../hooks/useHome';
 import ModalWelcome from '../components/ModalWelcome';
 import Opinion from '../components/Opinion';
-import {
-    IconDotBlue,
-    IconDotWhite,
-    IconPinblue,
-    IconPinRed,
-    IconPinWhite
-} from '../components/Icons/icons';
 
 export default function Home(props) {
     const [isMobile, setIsMobile] = useState(false);

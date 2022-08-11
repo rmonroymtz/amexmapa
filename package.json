@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@react-hook/window-size": "^3.0.7",
-    "next": "12.2.3",
+    "next": "12.2.4-canary.9",
     "next-pwa": "^5.5.5",
     "react": "18.2.0",
     "react-dom": "18.2.0"

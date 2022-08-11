@@ -21,7 +21,7 @@ export default async function consult(req, res) {
             Distance: '25',
             Industria: ['Restaurant', 'a', 'b'],
             SubIndustria: [],
-            Limit: '20',
+            Limit: '100',
             StartLimit: '0',
             DistanceType: 'km'
         };

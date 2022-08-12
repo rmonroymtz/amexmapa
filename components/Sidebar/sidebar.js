@@ -14,6 +14,7 @@ const Sidebar = (props) => {
         handleChangePage,
         handleSideBarMouseOver,
         handleSideBarMouseOut,
+        handleSideBarOnClick,
         pageSize
     } = props;
     const onlyWidth = useWindowWidth();
@@ -53,6 +54,7 @@ const Sidebar = (props) => {
                     places={activelistItems}
                     handleSideBarMouseOver={handleSideBarMouseOver}
                     handleSideBarMouseOut={handleSideBarMouseOut}
+                    handleSideBarOnClick={handleSideBarOnClick}
                     activeItem={props.activeItem}
                     pageSize={pageSize}
                     currentPage={currentPage}

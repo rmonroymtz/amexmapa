@@ -7,7 +7,8 @@ const ItemResults = ({
     places,
     handleSideBarMouseOver = () => {},
     activeItem,
-    handleSideBarMouseOut,
+    handleSideBarMouseOut = () => {},
+    handleSideBarOnClick = () => {},
     currentPage,
     pageSize
 }) => {
@@ -17,9 +18,9 @@ const ItemResults = ({
         const listOfPlaces = places.map((place, id) => {
             const distance = `${parseFloat(place.distance_km).toFixed(1)} km`;
 
-            const iconType = <span className={styles.iconType}></span>
+            const iconType = <span className={styles.iconType}></span>;
 
-            if (place.industria==='Restaurant') {
+            if (place.industria === 'Restaurant') {
                 return (
                     <Item
                         key={`place-${id}`}
@@ -30,13 +31,13 @@ const ItemResults = ({
                         distance={distance}
                         onMouseOver={handleSideBarMouseOver(id + startIndex)}
                         onMouseOut={handleSideBarMouseOut(id + startIndex)}
+                        onClick={handleSideBarOnClick(id + startIndex)}
                         active={activeItem === id}
                     />
                 );
             }
 
             return null;
-
         });
 
         return listOfPlaces;

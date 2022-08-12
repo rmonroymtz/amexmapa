@@ -1,13 +1,14 @@
 import React, { Fragment } from 'react';
 import styles from './item.module.css';
 
-const Item = ({ onMouseOver, onMouseOut, ...props }) => {
+const Item = ({ onMouseOver, onMouseOut, onClick, ...props }) => {
     return (
         <Fragment>
             <div
                 className={styles.itemResult}
                 onMouseOver={onMouseOver}
                 onMouseOut={onMouseOut}
+                onClick={onClick}
             >
                 <div className={styles.typeItem}>{props.type}</div>
                 <div className={styles.nameItem}>{props.name}</div>

@@ -29,3 +29,15 @@
     cursor: pointer;
     transition: color .25s ease-out,background-color .25s ease-out;
 }
+
+.iconType {
+    content: url("../../public/restaurant.png");
+    height: 20px;
+    width: 20px;
+}
+
+.iconType:hover {
+    content: url("../../public/restaurantHover.png");
+    height: 20px;
+    width: 20px;
+}

@@ -16,21 +16,27 @@ const ItemResults = ({
         const startIndex = Math.floor(currentPage - 1) * pageSize;
         const listOfPlaces = places.map((place, id) => {
             const distance = `${parseFloat(place.distance_km).toFixed(1)} km`;
-            return (
-                <Item
-                    key={`place-${id}`}
-                    type={place.type}
-                    name={place.nombre_establecimiento}
-                    address={place.calle_numero}
-                    address2={place.address2}
-                    distance={distance}
-                    iconListing={place.iconListing}
-                    iconShop={place.iconShop}
-                    onMouseOver={handleSideBarMouseOver(id + startIndex)}
-                    onMouseOut={handleSideBarMouseOut(id + startIndex)}
-                    active={activeItem === id}
-                />
-            );
+
+            const iconType = <span className={styles.iconType}></span>
+
+            if (place.industria==='Restaurant') {
+                return (
+                    <Item
+                        key={`place-${id}`}
+                        type={iconType}
+                        name={place.nombre_establecimiento}
+                        address={place.calle_numero}
+                        address2={place.address2}
+                        distance={distance}
+                        onMouseOver={handleSideBarMouseOver(id + startIndex)}
+                        onMouseOut={handleSideBarMouseOut(id + startIndex)}
+                        active={activeItem === id}
+                    />
+                );
+            }
+
+            return null;
+
         });
 
         return listOfPlaces;

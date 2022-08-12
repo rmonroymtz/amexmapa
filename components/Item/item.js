@@ -14,8 +14,6 @@ const Item = ({ onMouseOver, onMouseOut, ...props }) => {
                 <div className={styles.addressItem}>{props.address}</div>
                 <div className={styles.addressItem2}>{props.address2}</div>
                 <div className={styles.distanceItem}>{props.distance}</div>
-                <div className={styles.iconNewListing}>{props.iconListing}</div>
-                <div className={styles.iconItem}>{props.iconShop}</div>
             </div>
         </Fragment>
     );

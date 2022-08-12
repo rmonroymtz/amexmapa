@@ -6,22 +6,30 @@ const useHome = (props) => {
     const [errorConsultPosition, setErrorConsultPosition] = useState({});
     const [currentPosition, setCurrentPosition] = useState({});
     const [places, setPlaces] = useState(null);
+    const [clickedItem, setClickedItem] = useState(null);
+    const [hoverItem, setHoverItem] = useState(null);
     const [markerPlaces, setMarkerPlaces] = useState([]);
     const mapInstanceRef = useRef();
 
     const talonPagination = usePagination({
         markerPlaces,
-        listItems: places
+        listItems: places,
+        setClickedItem,
+        setHoverItem,
+        clickedItem
     });
 
     const talonsUseSideBar = useSideBar({
         markerPlaces,
+        clickedItem,
+        setClickedItem,
+        hoverItem,
         ...talonPagination
     });
     /**
      * consul api places
      */
-    const handleConsultPlaces = async ({ latitude, longitude }) => {
+    const handleConsultPlaces = useCallback(async ({ latitude, longitude }) => {
         const fetchOptions = {
             method: 'post',
             body: JSON.stringify({ latitude, longitude }),
@@ -34,7 +42,7 @@ const useHome = (props) => {
         if (data.body) {
             setPlaces(data.body.slice(0, 100));
         }
-    };
+    }, []);
 
     /*Position Methods*/
 
@@ -64,7 +72,7 @@ const useHome = (props) => {
         if (currentPosition.coords) {
             handleConsultPlaces(currentPosition.coords);
         }
-    }, [currentPosition]);
+    }, [currentPosition, handleConsultPlaces]);
 
     return {
         errorConsultPosition,
@@ -73,6 +81,8 @@ const useHome = (props) => {
         mapInstanceRef,
         setMarkerPlaces,
         markerPlaces,
+        clickedItem,
+        setClickedItem,
         ...talonPagination,
         ...talonsUseSideBar
     };

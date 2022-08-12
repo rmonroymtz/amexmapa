@@ -52,7 +52,7 @@ export default function Home(props) {
             <div className={styles.containerMain}>
                 <Sidebar places={activelistItems} {...talonProps} />
                 <div className={styles.containerMap}>
-                    <Details />
+                    <Details {...talonProps} />
                     {isMobile ? null : places ? (
                         <Map
                             setMarkerPlaces={setMarkerPlaces}

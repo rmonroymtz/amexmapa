@@ -83,21 +83,12 @@ const usePagination = ({
                         });
                     }
                 }
-                const map = marker.getMap();
+                setClickedItem(index);
 
-                google.maps.event.clearListeners(marker, 'mouseover');
-                google.maps.event.clearListeners(marker, 'mouseout');
 
-                marker.setIcon('/pinBlueHover.png');
 
-                infoWindow.close();
-                const data = listItems[index];
-                const itemMarker = handleFormatInfo({ marker, data });
-
-                infoWindowClick.setContent(itemMarker);
-                infoWindowClick.open(map, marker);
             },
-        [markerPlaces]
+        [markerPlaces, setClickedItem, setHoverItem, listItems]
     );
 
     /**
@@ -133,7 +124,7 @@ const usePagination = ({
 
         if (!refInfoWindow.current) {
             refInfoWindow.current = new google.maps.InfoWindow();
-            refInfoWindow.current.setZIndex(99)
+            refInfoWindow.current.setZIndex(99);
         }
 
         if (!refInfoWindowOnClick.current) {
@@ -195,9 +186,10 @@ const usePagination = ({
         markerPlaces,
         currentPage,
         pageSize,
-        setClickedItem,
         setHoverItem,
-        clickedItem
+        clickedItem,
+        handleOnClick,
+        listItems
     ]);
 
     const handleNextPage = useCallback(() => {
@@ -227,7 +219,8 @@ const usePagination = ({
         setActivelistItems,
         pageSize,
         refInfoWindow,
-        refInfoWindowOnClick
+        refInfoWindowOnClick,
+        handleFormatInfo
     };
 };
 

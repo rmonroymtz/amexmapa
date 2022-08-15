@@ -15,6 +15,8 @@ const Sidebar = (props) => {
         handleSideBarMouseOver,
         handleSideBarMouseOut,
         handleSideBarOnClick,
+        handleInputSuggestion,
+        inputSuggestions,
         pageSize
     } = props;
     const onlyWidth = useWindowWidth();
@@ -33,10 +35,19 @@ const Sidebar = (props) => {
             <div className={styles.containerSearch}>
                 <div>
                     <input
+                        onChange={handleInputSuggestion}
                         className={styles.textInput}
                         type="text"
                         placeholder={'Buscar por nombre'}
+                        value={inputSuggestions}
                     />
+                    <div>
+                        <p>Sugestion 1</p>
+                        <p>Sugestion 2</p>
+                        <p>Sugestion 3</p>
+                        <p>Sugestion 4</p>
+                        <p>Sugestion 5</p>
+                    </div>
                 </div>
                 {isMobile ? (
                     <div>

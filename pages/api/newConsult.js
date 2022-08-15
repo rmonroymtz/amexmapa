@@ -19,7 +19,17 @@ export default async function consult(req, res) {
             Latitude: `${req.body.latitude}`,
             Longitude: `${req.body.longitude}`,
             Distance: '25',
-            Industria: ['Restaurant', 'a', 'b'],
+            Industria: [
+                'Travel',
+                'Transportation',
+                'Professional Services',
+                'Lodging',
+                'Entertainment',
+                'Education',
+                'Auto Rental',
+                'Retail',
+                'Healthcare Services'
+            ],
             SubIndustria: [],
             Limit: '100',
             StartLimit: '0',

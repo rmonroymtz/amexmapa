@@ -1,7 +1,22 @@
 .root {
-    max-width: 25%;
+    position: absolute;
+    z-index: 100;
+    top: 69px;
+    left: 0;
+    width: 100%;
+    max-width: 100%;
+    background: #fff;
+    height: 100vh;
     border-left: 0.0625rem solid #ecedee;
     border-right: 0.0625rem solid #ecedee;
+}
+
+.rootBlack {
+    background-color: rgba(0,0,0,.5);
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    width: 100%;
 }
 
 .containerBackButton{
@@ -27,6 +42,7 @@
 .iconChevronLeft {
     fill: #006fcf;
     height: 22px;
+    margin-right: .5rem;
 }
 .iconShare {
     stroke-width: 2px;
@@ -82,10 +98,10 @@
     color: #b42c01;
 }
 
-
 .btnLocation, .btnContact {
     display: flex;
-    padding: .625rem 1.2rem;
+    padding: 1rem 1.2rem;
+    text-decoration: none;
 }
 
 .iconLocation {
@@ -93,7 +109,7 @@
     height: 22px;
 }
 .iconLocation:hover {
-    content: url("../../public/iconLocation.png");
+    content: url("../../public/iconLocationHover.png");
 }
 
 .iconPhone {
@@ -120,4 +136,24 @@
     background-color: #f7f8f9;
     padding: .625rem 1.2rem;
     font-weight: 600;
+}
+
+
+@media (min-width: 768px) {
+    .root {
+        position: inherit;
+        z-index: auto;
+        top:inherit;
+        left: inherit;
+        background: #fff;
+        height: 100vh;
+    }
+    .rootBlack {
+        background-color:transparent;
+        position: inherit;
+        top: initial;
+        height: inherit;
+        width: 100%;
+        max-width: 25%;
+    }
 }

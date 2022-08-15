@@ -23,7 +23,7 @@ const usePagination = ({
 
         const itemMarker = `<div style="display: flex; padding: 1rem;">
         <div style="margin-right: 1rem">
-                <img  width="20" height="20" src="/restaurant.png"/>
+                <img  width="20" height="20" src="/restaurantBlue.png"/>
         </div>
         <div style="display: flex; flex-direction: column;">
             <div style="font-weight: bold; color: #006fcf;">

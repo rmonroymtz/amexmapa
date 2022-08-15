@@ -15,8 +15,16 @@
   min-width: 75%;
 }
 
+.mapMobileNone {
+    display: none;
+}
+
 @media (min-width: 768px) {
     .containerMain {
         display: flex;
+    }
+
+    .mapMobileNone {
+        display: contents;
     }
 }

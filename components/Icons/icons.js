@@ -287,7 +287,7 @@ const IconChevronLeft = (props) => (
             <path
                 id="chevron-left-Regular-2"
                 data-name="chevron-left-Regular"
-                className="cls-1"
+                className="chevroncls-1"
                 d="M16.53,20.47a.75.75,0,1,1-1.06,1.06l-9-9a.749.749,0,0,1,0-1.06l9-9a.75.75,0,0,1,1.06,1.06L8.061,12Z"
             />
         </g>
@@ -667,6 +667,271 @@ const IconDotWhite = (props) => (
     </svg>
 );
 
+const IconTicket = (props) => (
+    <svg
+        width="22px"
+        height="22px"
+        viewBox="0 0 512 512"
+        xmlns="http://www.w3.org/2000/svg"
+        {...props}
+    >
+        <path
+            fill="none"
+            stroke="#006FCF"
+            strokeMiterlimit={10}
+            strokeWidth={32}
+            d="M366.05,146a46.7,46.7,0,0,1-2.42-63.42,3.87,3.87,0,0,0-.22-5.26L319.28,33.14a3.89,3.89,0,0,0-5.5,0l-70.34,70.34a23.62,23.62,0,0,0-5.71,9.24h0a23.66,23.66,0,0,1-14.95,15h0a23.7,23.7,0,0,0-9.25,5.71L33.14,313.78a3.89,3.89,0,0,0,0,5.5l44.13,44.13a3.87,3.87,0,0,0,5.26.22,46.69,46.69,0,0,1,65.84,65.84,3.87,3.87,0,0,0,.22,5.26l44.13,44.13a3.89,3.89,0,0,0,5.5,0l180.4-180.39a23.7,23.7,0,0,0,5.71-9.25h0a23.66,23.66,0,0,1,14.95-15h0a23.62,23.62,0,0,0,9.24-5.71l70.34-70.34a3.89,3.89,0,0,0,0-5.5l-44.13-44.13a3.87,3.87,0,0,0-5.26-.22A46.7,46.7,0,0,1,366.05,146Z"
+        />
+        <line
+            fill="none"
+            stroke="#006FCF"
+            strokeMiterlimit={10}
+            strokeWidth={32}
+            strokeLinecap="round"
+            x1={250.5}
+            y1={140.44}
+            x2={233.99}
+            y2={123.93}
+        />
+        <line
+            fill="none"
+            stroke="#006FCF"
+            strokeMiterlimit={10}
+            strokeWidth={32}
+            strokeLinecap="round"
+            x1={294.52}
+            y1={184.46}
+            x2={283.51}
+            y2={173.46}
+        />
+        <line
+            fill="none"
+            stroke="#006FCF"
+            strokeMiterlimit={10}
+            strokeWidth={32}
+            strokeLinecap="round"
+            x1={338.54}
+            y1={228.49}
+            x2={327.54}
+            y2={217.48}
+        />
+        <line
+            fill="none"
+            stroke="#006FCF"
+            strokeMiterlimit={10}
+            strokeWidth={32}
+            strokeLinecap="round"
+            x1={388.07}
+            y1={278.01}
+            x2={371.56}
+            y2={261.5}
+        />
+    </svg>
+);
+
+const IconBag = (props) => (
+    <svg
+        id="Capa_1"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 64 64"
+        {...props}
+    >
+        <defs>
+            <style>
+                {
+                    ".clsbag-1{fill:#ffffff;stroke:#006ecf;stroke-linecap:round;stroke-linejoin:round;stroke-width:4px;}"
+                }
+            </style>
+        </defs>
+        <g id="Grupo_105">
+            <path
+                id="Trazado_27"
+                className="clsbag-1"
+                d="M14.02,15.29l-4.99,47.01H54.97l-4-47.01H14.02Z"
+            />
+            <path
+                id="Trazado_28"
+                className="clsbag-1"
+                d="M22.66,20.97V12.01s-.09-10.77,9.83-10.29c9.92,.48,9.12,10.29,9.12,10.29v8.96"
+            />
+        </g>
+    </svg>
+);
+
+const IconCutlery = (props) => (
+    <svg
+        id="Capa_1"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 64 64"
+        {...props}
+    >
+        <defs>
+            <style>
+                {
+                    ".cls-1,.cls-2{fill:none;stroke:#006ecf;stroke-linecap:round;stroke-width:3px;}.cls-2{stroke-linejoin:round;}"
+                }
+            </style>
+        </defs>
+        <g id="Grupo_118">
+            <g id="Grupo_101">
+                <path
+                    id="Trazado_18"
+                    className="cls-2"
+                    d="M14.46,2V18.45s-.29,3.53,7.95,3.42,8.07-3.42,8.07-3.42V2"
+                />
+                <path id="Trazado_19" className="cls-1" d="M22.47,2V13.82" />
+                <path id="Trazado_20" className="cls-1" d="M14.91,13.82h15.65" />
+                <path id="Trazado_21" className="cls-1" d="M22.47,22.31V62" />
+            </g>
+            <g id="Grupo_102">
+                <path
+                    id="Trazado_22"
+                    className="cls-2"
+                    d="M41.13,21.91c-.26-19.76,8.41-19.54,8.41-19.54V36.32s-8.29,1.02-8.41-8.28c-.12-9.3,0-6.12,0-6.12Z"
+                />
+                <path id="Trazado_23" className="cls-1" d="M49.54,26.18V61.65" />
+            </g>
+        </g>
+    </svg>
+);
+
+
+const IconServices = (props) => (
+    <svg
+        id="Capa_1"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 64 64"
+        {...props}
+    >
+        <defs>
+            <style>
+                {
+                    ".cls-1{fill:#006ecf;}.cls-2{fill:#fff;}.cls-3{stroke-linecap:round;}.cls-3,.cls-4{fill:none;stroke:#006ecf;stroke-width:4px;}"
+                }
+            </style>
+        </defs>
+        <g id="Grupo_120">
+            <g id="Trazado_29">
+                <path
+                    className="cls-2"
+                    d="M34.06,52.39c-10.95,0-18.24-.23-22.95-.72-3.87-.4-6.25-1.02-7.07-1.84-.43-.43-.47-.97-.46-2.28,0-.1,0-.2,0-.3,0-4.09,.75-8.05,2.24-11.78,1.44-3.6,3.49-6.83,6.11-9.6,2.61-2.77,5.65-4.94,9.03-6.45,3.5-1.57,7.21-2.36,11.04-2.36s7.54,.79,11.04,2.36c3.38,1.52,6.42,3.69,9.03,6.45,2.62,2.77,4.67,6,6.11,9.6,1.49,3.73,2.24,7.69,2.24,11.78,0,.19,0,.37,0,.55,.02,1.21-.01,1.71-.41,2.11-.75,.76-2.83,1.35-6.17,1.74-4.21,.5-10.49,.73-19.78,.73Z"
+                />
+                <path
+                    className="cls-1"
+                    d="M32,18.46c-3.63,0-7.15,.75-10.46,2.24-3.21,1.44-6.1,3.51-8.59,6.14-2.5,2.64-4.46,5.73-5.83,9.16-1.42,3.56-2.14,7.35-2.14,11.26,0,.1,0,.2,0,.3,0,.44,0,1.09,.06,1.3,.06,.06,.34,.28,1.16,.54,1.07,.34,2.66,.63,4.72,.86,4.65,.51,12,.74,23.14,.74,9.25,0,15.73-.24,19.82-.75,1.78-.22,3.16-.49,4.1-.81,.68-.23,.94-.42,1.01-.48,.05-.21,.04-.74,.04-1.13,0-.18,0-.37,0-.57,0-3.91-.72-7.7-2.14-11.26-1.37-3.43-3.33-6.52-5.83-9.16-2.49-2.63-5.37-4.7-8.59-6.14-3.31-1.49-6.83-2.24-10.46-2.24m0-2.8c16.47,0,29.82,14.14,29.82,31.59,0,4.19,1.33,6.53-27.76,6.53-32.61,0-31.88-2.01-31.88-6.53C2.18,29.81,15.53,15.66,32,15.66Z"
+                />
+            </g>
+            <line
+                id="L\xEDnea_3"
+                className="cls-4"
+                x1={2.17}
+                y1={50.97}
+                x2={61.81}
+                y2={50.97}
+            />
+            <line
+                id="L\xEDnea_4"
+                className="cls-3"
+                x1={2.19}
+                y1={59.65}
+                x2={61.83}
+                y2={59.65}
+            />
+            <line
+                id="L\xEDnea_5"
+                className="cls-4"
+                x1={32}
+                y1={7.45}
+                x2={32}
+                y2={16.12}
+            />
+            <rect
+                id="Rect\xE1ngulo_57"
+                className="cls-1"
+                x={24.56}
+                y={4.35}
+                width={14.87}
+                height={4.96}
+                rx={2.48}
+                ry={2.48}
+            />
+            <path
+                id="Trazado_30"
+                className="cls-3"
+                d="M13.42,42.23s3.87-11.87,14.24-16.13"
+            />
+        </g>
+    </svg>
+);
+
+const IconTrips = (props) => (
+    <svg
+        id="Capa_1"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 64 64"
+        {...props}
+    >
+        <defs>
+            <style>
+                {
+                    ".cls-1,.cls-2,.cls-3{fill:none;}.cls-4{fill:#006ecf;}.cls-2,.cls-3{stroke:#006ecf;stroke-width:3px;}.cls-3{stroke-linecap:round;stroke-linejoin:round;}"
+                }
+            </style>
+        </defs>
+        <g id="Grupo_106">
+            <g id="Rect\xE1ngulo_55">
+                <rect className="cls-1" y={11} width={64} height={45} rx={2} ry={2} />
+                <rect
+                    className="cls-3"
+                    x={1.5}
+                    y={12.5}
+                    width={61}
+                    height={42}
+                    rx={0.5}
+                    ry={0.5}
+                />
+            </g>
+            <g id="Rect\xE1ngulo_56">
+                <rect
+                    className="cls-1"
+                    x={17}
+                    y={2}
+                    width={30}
+                    height={11}
+                    rx={2}
+                    ry={2}
+                />
+                <rect
+                    className="cls-3"
+                    x={18.5}
+                    y={3.5}
+                    width={27}
+                    height={8}
+                    rx={0.5}
+                    ry={0.5}
+                />
+            </g>
+            <line
+                id="L\xEDnea_1"
+                className="cls-2"
+                x1={11.05}
+                y1={13.73}
+                x2={11.05}
+                y2={54.44}
+            />
+            <line
+                id="L\xEDnea_2"
+                className="cls-2"
+                x1={52.92}
+                y1={13.73}
+                x2={52.92}
+                y2={54.44}
+            />
+            <circle id="Elipse_11" className="cls-4" cx={18} cy={58} r={4} />
+            <circle id="Elipse_12" className="cls-4" cx={46} cy={58} r={4} />
+        </g>
+    </svg>
+);
 export {
     IconLocation,
     IconFilter,
@@ -685,5 +950,10 @@ export {
     IconPinblue,
     IconDotBlue,
     IconDotWhite,
+    IconTicket,
+    IconBag,
+    IconCutlery,
+    IconServices,
+    IconTrips,
     LogoAmex
 };

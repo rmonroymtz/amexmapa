@@ -18,11 +18,15 @@ const Sidebar = (props) => {
         pageSize
     } = props;
     const onlyWidth = useWindowWidth();
+
     const [isMobile, setIsMobile] = useState(false);
+
 
     useEffect(() => {
         setIsMobile(onlyWidth <= 768);
     }, [onlyWidth]);
+
+
 
     return (
         <div className={styles.root}>
@@ -36,7 +40,7 @@ const Sidebar = (props) => {
                 </div>
                 {isMobile ? (
                     <div>
-                        <button className={styles.btnMap}>Map</button>
+                        <button className={styles.btnMap} >Map</button>
                     </div>
                 ) : (
                     <div>

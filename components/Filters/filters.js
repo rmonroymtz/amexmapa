@@ -1,6 +1,6 @@
 import React, {useCallback, useState} from "react";
 import styles from "./filters.module.css";
-import {IconFilter, IconShopSmall, IconX} from "../Icons/icons";
+import {IconFilter, IconBag, IconTicket, IconX, IconCutlery, IconServices, IconTrips} from "../Icons/icons";
 
 const Filters =()=>{
 
@@ -32,42 +32,44 @@ const Filters =()=>{
                             CATEGORÍA
                         </div>
 
-                        <div className={styles.div10}>
-                            <input type="radio"/>
+                        <div className={styles.containerRadios}>
+                            <label  className={styles.container}>
+                                Cualquier categoría
+                                <input type={'radio'} name={'radio'}/>
+                                    <span className={styles.checkmark}></span>
+                            </label>
+                            <label className={styles.container}>
+                                <IconCutlery className={styles.iconCutlery} />
+                                Restaurantes
+                                <input type={'radio'} name={'radio'}/>
+                                <span className={styles.checkmark}></span>
+                            </label>
+                            <label className={styles.container}>
+                                <IconBag className={styles.iconBag}/>
+                                Compras
+                                <input type={'radio'} name={'radio'}/>
+                                <span className={styles.checkmark}></span>
+                            </label>
+                            <label className={styles.container}>
+                                <IconTicket className={styles.iconTicket}/>
+                                Entretenimiento
+                                <input type={'radio'} name={'radio'}/>
+                                <span className={styles.checkmark}></span>
+                            </label>
+                            <label className={styles.container}>
+                                <IconServices className={styles.iconServices}/>
+                                Servicios
+                                <input type={'radio'} name={'radio'}/>
+                                <span className={styles.checkmark}></span>
+                            </label>
+                            <label className={styles.container}>
+                                <IconTrips className={styles.iconTrips}/>
+                                Viajes
+                                <input type={'radio'} name={'radio'}/>
+                                <span className={styles.checkmark}></span>
+                            </label>
                         </div>
-                        <div className={styles.div11}>
-                            Cualquier categoría
-                        </div>
-                        <div className={styles.div12}>
-                            <input type="radio"/>
-                        </div>
-                        <div className={styles.div13}>
-                            Restaurantes
-                        </div>
-                        <div className={styles.div14}>
-                            <input type="radio"/>
-                        </div>
-                        <div className={styles.div15}>
-                            Compras
-                        </div>
-                        <div className={styles.div16}>
-                            <input type="radio"/>
-                        </div>
-                        <div className={styles.div17}>
-                            Entretenimiento
-                        </div>
-                        <div className={styles.div18}>
-                            <input type="radio"/>
-                        </div>
-                        <div className={styles.div19}>
-                            Servicios
-                        </div>
-                        <div className={styles.div20}>
-                            <input type="radio"/>
-                        </div>
-                        <div className={styles.div21}>
-                            Viajes
-                        </div>
+
                     </div>
                 </div>
                 :null

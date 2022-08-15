@@ -69,11 +69,6 @@
 }
 
 .parent {
-    display: grid;
-    grid-template-columns: 1fr 5fr;
-    grid-template-rows: repeat(4, 1fr);
-    grid-column-gap: 0;
-    grid-row-gap: 0;
     touch-action: manipulation;
     color: rgb(51, 51, 51);
     font-family: "Helvetica Neue", Helvetica, sans-serif;
@@ -83,61 +78,94 @@
     cursor: pointer;
     margin-bottom: 0;
     min-height: 1.375rem;
-    padding-left: 10px;
+    padding: 20px;
 
 }
-.parent >  div {
-    height: 36px;
-    display: flex;
-    align-items: center;
-}
-
-.div9 { grid-area: 5 / 1 / 6 / 3; }
-.div10 { grid-area: 6 / 1 / 7 / 2; }
-.div11 { grid-area: 6 / 2 / 7 / 3; }
-.div12 { grid-area: 7 / 1 / 8 / 2; }
-.div13 { grid-area: 7 / 2 / 8 / 3; }
-.div14 { grid-area: 8 / 1 / 9 / 2; }
-.div15 { grid-area: 8 / 2 / 9 / 3; }
-.div16 { grid-area: 9 / 1 / 10 / 2; }
-.div17 { grid-area: 9 / 2 / 10 / 3; }
-.div18 { grid-area: 10 / 1 / 11 / 2; }
-.div19 { grid-area: 10 / 2 / 11 / 3; }
-.div20 { grid-area: 11 / 1 / 12 / 2; }
-.div21 { grid-area: 11 / 2 / 12 / 3; }
 
 .div9 {
     font-weight: 600;
+    margin-bottom: 20px;
 }
 
-.selectOrder {
-    background: #ecedee!important;
-    border: 0.0625rem solid #c8c9c7;
-    border-radius: 0.25rem;
-    transition: border-color .25s ease-out;
+.containerRadios {
+    display: flex;
+    flex-direction: column;
+}
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 1.25rem;
     cursor: pointer;
     font-size: 1rem;
-    height: 50px;
-    width: 100%;
-    z-index: 1;
-    text-overflow: ellipsis;
-    padding: 0.625rem 2rem 0.625rem 0.625rem;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
-.selectOrder:focus{
-    border: 0.0625rem solid #006fcf;
-    outline: #006fcf;
-}
-.selectOrder:active {
-    outline: 1px dashed #53565a;
-    outline-offset: 3px;
-    border-color: #006fcf;
+/* Hide the browser's default radio button */
+.container > input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
 }
 
-.containerSelect {
-    max-width: 50%;
-    display: flex;
+/* Create a custom radio button */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 22px;
+    width: 22px;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    border: 1px solid #97999B;
 }
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+    border: 1px solid #006FCF;
+}
+
+/* When the radio button is checked, add a blue background */
+.container> input:checked ~ .checkmark {
+    background-color: #FFFFFF;
+    border: 1px solid #006FCF;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container> input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container .checkmark:after {
+    top: 4px;
+    left: 4px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #006FCF;
+}
+
+.iconTicket {
+    transform: rotate(180deg);
+}
+
+.iconTicket, .iconBag, .iconCutlery, .iconServices, .iconTrips {
+    height: 22px;
+    width: 22px;
+    margin-right: 10px;
+}
+
 
 @media (min-width: 768px) {
 

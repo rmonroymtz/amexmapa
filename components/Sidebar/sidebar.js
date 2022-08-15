@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useWindowWidth } from '@react-hook/window-size';
 import styles from './sidebar.module.css';
 import ItemResults from '../ItemResults/itemResults';
@@ -15,7 +15,11 @@ const Sidebar = (props) => {
         handleSideBarMouseOver,
         handleSideBarMouseOut,
         handleSideBarOnClick,
-        pageSize
+        handleInputSuggestion,
+        handleSelectSuggestion,
+        inputSuggestions,
+        pageSize,
+        suggestions
     } = props;
     const onlyWidth = useWindowWidth();
 
@@ -26,17 +30,31 @@ const Sidebar = (props) => {
         setIsMobile(onlyWidth <= 768);
     }, [onlyWidth]);
 
+    const suggestion = useMemo(() => {
+        if (!suggestions.length) return null;
 
+        return suggestions.map((suggestion, index) => (
+            <button
+                key={`suggestion-${index}`}
+                onClick={handleSelectSuggestion(suggestion)}
+            >
+                {suggestion.nombre_establecimiento}
+            </button>
+        ));
+    }, [suggestions]);
 
     return (
         <div className={styles.root}>
             <div className={styles.containerSearch}>
                 <div>
                     <input
+                        onChange={handleInputSuggestion}
                         className={styles.textInput}
                         type="text"
                         placeholder={'Buscar por nombre'}
+                        value={inputSuggestions}
                     />
+                    <div>{suggestion}</div>
                 </div>
                 {isMobile ? (
                     <div>

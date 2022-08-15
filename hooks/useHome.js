@@ -24,6 +24,7 @@ const useHome = (props) => {
         clickedItem,
         setClickedItem,
         hoverItem,
+        listItems: places,
         ...talonPagination
     });
     /**

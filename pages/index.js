@@ -71,17 +71,3 @@ export default function Home(props) {
         </div>
     );
 }
-
-export async function getStaticProps() {
-    const res = await fetch('http://localhost:3000/api/getFooter');
-    const data = await res.text();
-    const newData = data.replace(
-        'https://www.aexp-static.com/cdaas/one/statics/axp-static-assets/2.14.2/package/dist/img/flags/dls-flag-mx.svg',
-        '/dls-flag-mx.svg'
-    );
-    return {
-        props: {
-            footer: newData
-        }
-    };
-}

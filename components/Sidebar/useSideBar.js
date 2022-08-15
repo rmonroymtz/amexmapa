@@ -1,19 +1,16 @@
 import { useCallback, useEffect, useState } from 'react';
 
 export const useSideBar = (props) => {
-    const {
-        markerPlaces,
-        clickedItem,
-        setClickedItem,
-    } = props;
+    const { markerPlaces, clickedItem, setClickedItem, listItems } = props;
+
+    const [suggestions, setSuggestions] = useState([]);
+    const [inputSuggestions, setInputSuggestion] = useState('');
 
     useEffect(() => {
         if (typeof clickedItem !== 'number') return;
         const marker = markerPlaces[clickedItem];
         marker.setIcon('/pinBlueHover.png');
     }, [clickedItem, markerPlaces]);
-
-    const [activeItem, setActiveItem] = useState(null);
 
     const handleSideBarMouseOver = (number) => () => {
         if (number === clickedItem) return;
@@ -36,11 +33,28 @@ export const useSideBar = (props) => {
         [markerPlaces, setClickedItem]
     );
 
+    const handleInputSuggestion = (event) => {
+        const { value } = event.target;
+        console.log(value);
+        setInputSuggestion(value);
+    };
+
+    useEffect(() => {
+        if (inputSuggestions.length < 3) return;
+        let count = 0;
+        for(const item of listItems){
+            if(item.nombre_establecimiento.toLowerCase().includes(inputSuggestions)){
+                console.log(item.nombre_establecimiento)
+            }
+        }
+    }, [inputSuggestions, listItems]);
+
     return {
         handleSideBarOnClick,
         handleSideBarMouseOver,
         handleSideBarMouseOut,
-        activeItem,
-        setClickedItem
+        handleInputSuggestion,
+        setClickedItem,
+        inputSuggestions
     };
 };

@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
 export const useSideBar = (props) => {
+<<<<<<< HEAD
     const {
         markerPlaces,
         clickedItem,
@@ -10,6 +11,12 @@ export const useSideBar = (props) => {
         refInfoWindowOnClick,
         handleFormatInfo
     } = props;
+=======
+    const { markerPlaces, clickedItem, setClickedItem, listItems } = props;
+
+    const [suggestions, setSuggestions] = useState([]);
+    const [inputSuggestions, setInputSuggestion] = useState('');
+>>>>>>> d01e700825bb89adcf0448a2f0548488799252d9
 
     const [suggestions, setSuggestions] = useState([]);
     const [clickedPlace, setClickedPlace] = useState(false);
@@ -31,6 +38,7 @@ export const useSideBar = (props) => {
 
         marker.setIcon('/pinBlueHover.png');
 
+<<<<<<< HEAD
         infoWindow.close();
         const data = listItems[clickedItem];
         const itemMarker = handleFormatInfo({ marker, data });
@@ -45,6 +53,8 @@ export const useSideBar = (props) => {
      * @returns
      */
 
+=======
+>>>>>>> d01e700825bb89adcf0448a2f0548488799252d9
     const handleSideBarMouseOver = (number) => () => {
         if (number === clickedItem) return;
         const marker = markerPlaces[number];
@@ -65,6 +75,7 @@ export const useSideBar = (props) => {
         [markerPlaces]
     );
 
+<<<<<<< HEAD
     /**
      *
      * @param {*} event Event input onChange
@@ -101,15 +112,37 @@ export const useSideBar = (props) => {
         }
         setSuggestions(tempPlaces);
     }, [inputSuggestions, listItems, clickedPlace]);
+=======
+    const handleInputSuggestion = (event) => {
+        const { value } = event.target;
+        console.log(value);
+        setInputSuggestion(value);
+    };
+
+    useEffect(() => {
+        if (inputSuggestions.length < 3) return;
+        let count = 0;
+        for(const item of listItems){
+            if(item.nombre_establecimiento.toLowerCase().includes(inputSuggestions)){
+                console.log(item.nombre_establecimiento)
+            }
+        }
+    }, [inputSuggestions, listItems]);
+>>>>>>> d01e700825bb89adcf0448a2f0548488799252d9
 
     return {
         handleSideBarOnClick,
         handleSideBarMouseOver,
         handleSideBarMouseOut,
         handleInputSuggestion,
+<<<<<<< HEAD
         handleSelectSuggestion,
         setClickedItem,
         inputSuggestions,
         suggestions
+=======
+        setClickedItem,
+        inputSuggestions
+>>>>>>> d01e700825bb89adcf0448a2f0548488799252d9
     };
 };

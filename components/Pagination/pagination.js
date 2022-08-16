@@ -3,7 +3,7 @@ import { IconChevronLeft } from '../Icons/icons';
 
 const Pagination = ({
     styles,
-    totalPages,
+    totalPages = 10,
     currentPage = 1,
     handleNextPage = () => {},
     handlePrevPage = () => {},

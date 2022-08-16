@@ -50,7 +50,6 @@ const ItemResults = ({
         return listOfPlaces;
     }, [places, activeItem, handleSideBarMouseOver]);
 
-    console.log('jorge',places)
 
     return (
         <div className={styles.root}>

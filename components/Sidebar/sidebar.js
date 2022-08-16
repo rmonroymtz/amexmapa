@@ -50,7 +50,7 @@ const Sidebar = (props) => {
     return (
         <div className={styles.root}>
             <div className={styles.containerSearch}>
-                <div className={styles.jorge}>
+                <div className={styles.containerSearchBar}>
                     <div className={styles.contentTextInputName}>
                         <input
                             onChange={handleInputSuggestion}

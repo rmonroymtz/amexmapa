@@ -19,12 +19,14 @@ const Sidebar = (props) => {
         handleSelectSuggestion,
         inputSuggestions,
         pageSize,
-        suggestions
+        suggestions,
+        triggerRef,
+        elementRef
     } = props;
+
     const onlyWidth = useWindowWidth();
 
     const [isMobile, setIsMobile] = useState(false);
-
 
     useEffect(() => {
         setIsMobile(onlyWidth <= 768);
@@ -53,12 +55,13 @@ const Sidebar = (props) => {
                         type="text"
                         placeholder={'Buscar por nombre'}
                         value={inputSuggestions}
+                        ref={triggerRef}
                     />
-                    <div>{suggestion}</div>
+                    <div ref={elementRef}>{suggestion}</div>
                 </div>
                 {isMobile ? (
                     <div>
-                        <button className={styles.btnMap} >Map</button>
+                        <button className={styles.btnMap}>Map</button>
                     </div>
                 ) : (
                     <div>

@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+import { useDropdown } from '../../hooks/useDropdown';
 
 export const useSideBar = (props) => {
     const {
@@ -12,8 +13,9 @@ export const useSideBar = (props) => {
     } = props;
 
     const [suggestions, setSuggestions] = useState([]);
-    const [clickedPlace, setClickedPlace] = useState(false);
+    const [selectedSuggestion, setSelectedSuggestion] = useState(false);
     const [inputSuggestions, setInputSuggestion] = useState('');
+    const { triggerRef, elementRef, expanded, setExpanded } = useDropdown();
 
     /**
      * UseEffect manage event onClick markers
@@ -71,36 +73,49 @@ export const useSideBar = (props) => {
 
     const handleInputSuggestion = (event) => {
         const { value } = event.target;
-        if (!clickedPlace.length) {
-            setClickedPlace(false);
+        if (!value.length) {
+            setExpanded(false);
+            setSelectedSuggestion(false)
+        } else {
+            setExpanded(true);
         }
         setInputSuggestion(value);
     };
 
     const handleSelectSuggestion = (place) => () => {
         setInputSuggestion(place.nombre_establecimiento);
+        setSelectedSuggestion(true);
         setSuggestions([]);
-        setClickedPlace(true);
+        setExpanded(false);
     };
 
     useEffect(() => {
-        if (inputSuggestions.length < 3 || clickedPlace) return;
         const tempPlaces = [];
-        for (const item of listItems) {
-            if (
-                item.nombre_establecimiento.includes(
-                    inputSuggestions.toUpperCase()
-                )
-            ) {
-                tempPlaces.push(item);
-            }
-            if (tempPlaces.length === 5) {
-                break;
+
+        if (inputSuggestions.length >= 3) {
+            if (selectedSuggestion) return;
+
+            for (const item of listItems) {
+                if (
+                    item.nombre_establecimiento.includes(
+                        inputSuggestions.toUpperCase()
+                    )
+                ) {
+                    tempPlaces.push(item);
+                }
+                if (tempPlaces.length === 5) {
+                    break;
+                }
             }
         }
         setSuggestions(tempPlaces);
-    }, [inputSuggestions, listItems, clickedPlace]);
+    }, [inputSuggestions, listItems, selectedSuggestion]);
 
+    useEffect(() => {
+        if (!expanded && !selectedSuggestion) {
+            setInputSuggestion('');
+        }
+    }, [expanded, selectedSuggestion]);
 
     return {
         handleSideBarOnClick,
@@ -112,6 +127,8 @@ export const useSideBar = (props) => {
         inputSuggestions,
         suggestions,
         setClickedItem,
-        inputSuggestions
+        inputSuggestions,
+        triggerRef,
+        elementRef
     };
 };

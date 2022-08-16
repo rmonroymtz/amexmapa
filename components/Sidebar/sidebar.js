@@ -4,6 +4,7 @@ import styles from './sidebar.module.css';
 import ItemResults from '../ItemResults/itemResults';
 import Filters from '../Filters/filters';
 import Pagination from '../Pagination';
+import {IconSearch} from "../Icons/icons";
 
 const Sidebar = (props) => {
     const {
@@ -36,37 +37,45 @@ const Sidebar = (props) => {
         if (!suggestions.length) return null;
 
         return suggestions.map((suggestion, index) => (
-            <button
+            <div
+                className={styles.suggestion}
                 key={`suggestion-${index}`}
                 onClick={handleSelectSuggestion(suggestion)}
             >
                 {suggestion.nombre_establecimiento}
-            </button>
+            </div>
         ));
     }, [suggestions]);
 
     return (
         <div className={styles.root}>
             <div className={styles.containerSearch}>
-                <div>
-                    <input
-                        onChange={handleInputSuggestion}
-                        className={styles.textInput}
-                        type="text"
-                        placeholder={'Buscar por nombre'}
-                        value={inputSuggestions}
-                        ref={triggerRef}
-                    />
-                    <div ref={elementRef}>{suggestion}</div>
+                <div className={styles.jorge}>
+                    <div className={styles.contentTextInputName}>
+                        <input
+                            onChange={handleInputSuggestion}
+                            className={styles.textInputName}
+                            type="text"
+                            placeholder={'Buscar por nombre'}
+                            value={inputSuggestions}
+                            ref={triggerRef}
+                        />
+                        {/*<button className={styles.searchBtn}>
+                            <IconSearch/>
+                        </button>*/}
+                    </div>
+                    <div className={styles.containerSuggestions} ref={elementRef}>
+                        {suggestion}
+                    </div>
                 </div>
                 {isMobile ? (
                     <div>
                         <button className={styles.btnMap}>Map</button>
                     </div>
                 ) : (
-                    <div>
+                    <div className={styles.contentTextInputCity}>
                         <input
-                            className={styles.textInput}
+                            className={styles.textInputCity}
                             type="text"
                             placeholder={'Buscar por ciudad'}
                         />

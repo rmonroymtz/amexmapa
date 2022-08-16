@@ -45,8 +45,6 @@ const usePagination = ({
         ({ startIndex, index }) =>
             () => {
                 const { current: infoWindow } = refInfoWindow;
-                const { current: infoWindowClick } = refInfoWindowOnClick;
-                const marker = markerPlaces[index];
                 for (const [id, mark] of markerPlaces.entries()) {
                     if (
                         mark.get('icon') === '/pinBlueHover.png' &&
@@ -84,9 +82,6 @@ const usePagination = ({
                     }
                 }
                 setClickedItem(index);
-
-
-
             },
         [markerPlaces, setClickedItem, setHoverItem, listItems]
     );

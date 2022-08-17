@@ -8,14 +8,12 @@
     display: flex;
     align-items: center;
     min-height: 70px;
-    padding: 0 12px;
 }
 
 .containerSearchBar {
     display: block;
-    width: 100%;
-    height: 50px;
-    margin-bottom: 1rem;
+    background: #FFFFFF;
+    padding: 12px;
 }
 
 .contentTextInputName {
@@ -44,7 +42,6 @@
 .textInputName {
     composes: textInput;
     width: -webkit-fill-available;
-    margin-bottom: 2rem;
 }
 
 .searchBtn {
@@ -79,15 +76,49 @@
     background: none;
     border: 1px solid #006fcf;
     border-radius: 4px;
-    height: 50px;
+    height: 52px;
     color: #006fcf;
     cursor: pointer;
+    width: 100%;
+    margin-left: 1rem;
 }
 
 .textInputCity {
     composes: textInput;
+    width: -webkit-fill-available;
+    margin-top: 1rem;
 }
 
+.containerBtnSearch {
+    padding: 12px 0;
+    width: 100%;
+}
+.btnSearch{
+    background: #006FCF;
+    border: 1px solid transparent;
+    cursor: pointer;
+    color: #FFFFFF;
+    display: inline-block;
+    font-weight: 400;
+    width: 100%;
+    min-width: 11.25rem;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    text-overflow: ellipsis;
+    transition: all .2s ease-in-out;
+    transition-property: color,background-color,border-color;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    vertical-align: middle;
+    white-space: nowrap;
+    padding: 0.8125rem 1.875rem;
+    font-size: 1rem;
+    line-height: 1.375rem;
+    border-radius: 0.25rem;
+}
 .containerSuggestions {
     background:#FFFFFF;
     display: flex;
@@ -200,6 +231,47 @@
     display: none;
 }
 
+
+/* change of styles on searchBar when is Active(onclick) */
+
+.containerModal {
+    position: absolute;
+    top: 69px;
+    background-color: rgba(0,0,0,.5);
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+}
+
+.contentTextInputNameModal {
+    display: flex;
+    width: 100%;
+}
+
+.containerSearchBarDefault {
+    composes: containerSearchBar;
+    display: flex;
+    width: 100%;
+}
+
+.searchBarHiddenTrue {
+    padding: 12px;
+    width: 75%;
+}
+.searchBarHiddenTrue > div > input {
+    margin-bottom: 0;
+}
+.containerSuggestionsModal{
+    composes: containerSuggestions;
+    position: absolute;
+    top: 4.5rem;
+    z-index: 2;
+    width: -webkit-fill-available;
+    margin: 0 12px;
+}
+/* ------------------------------------------------------ */
+
+
 @media (min-width: 768px) {
     .root {
         min-width: 25%;
@@ -215,7 +287,10 @@
         justify-content: center;
     }
 
-
+    .containerSearchBar {
+        flex-direction: column;
+        margin-bottom: 1rem;
+    }
 
     .contentTextInputName {
         display: flex;
@@ -229,6 +304,11 @@
 
     .contentBtnMap {
         display: none;
+    }
+
+    .containerSuggestionsModal {
+        margin: 16px;
+        top: 30%;
     }
 }
 

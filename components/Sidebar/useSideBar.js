@@ -18,6 +18,18 @@ export const useSideBar = (props) => {
     const { triggerRef, elementRef, expanded, setExpanded } = useDropdown();
 
     /**
+     * useEffect Reset when listItems change
+     */
+
+    useEffect(() => {
+        setSuggestions([]);
+        setSelectedSuggestion(false);
+        setInputSuggestion('');
+        setExpanded(false);
+        setClickedItem(null);
+    }, [listItems]);
+
+    /**
      * UseEffect manage event onClick markers
      */
     useEffect(() => {
@@ -75,7 +87,7 @@ export const useSideBar = (props) => {
         const { value } = event.target;
         if (!value.length) {
             setExpanded(false);
-            setSelectedSuggestion(false)
+            setSelectedSuggestion(false);
         } else {
             setExpanded(true);
         }

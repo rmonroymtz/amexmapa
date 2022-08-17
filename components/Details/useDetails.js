@@ -7,7 +7,7 @@ export const useDetails = (props) => {
     const [details, setDetails] = useState(null);
 
     const handleClose = useCallback(() => {
-        infowindow.current.close()
+        infowindow.current.close();
         setIsOpen(false);
         setClickedItem(null);
         setDetails(null);
@@ -18,7 +18,10 @@ export const useDetails = (props) => {
      */
 
     useEffect(() => {
-        if (typeof clickedItem !== 'number') return;
+        if (typeof clickedItem !== 'number') {
+            setIsOpen(false);
+            return;
+        }
         const selectedPlace = places[clickedItem];
         setIsOpen(true);
         setDetails(selectedPlace);

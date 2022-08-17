@@ -4,7 +4,7 @@ import styles from './sidebar.module.css';
 import ItemResults from '../ItemResults/itemResults';
 import Filters from '../Filters/filters';
 import Pagination from '../Pagination';
-import {IconSearch} from "../Icons/icons";
+import { IconSearch } from '../Icons/icons';
 
 const Sidebar = (props) => {
     const {
@@ -22,7 +22,8 @@ const Sidebar = (props) => {
         pageSize,
         suggestions,
         triggerRef,
-        elementRef
+        elementRef,
+        totalPages
     } = props;
 
     const onlyWidth = useWindowWidth();
@@ -64,7 +65,10 @@ const Sidebar = (props) => {
                             <IconSearch/>
                         </button>*/}
                     </div>
-                    <div className={styles.containerSuggestions} ref={elementRef}>
+                    <div
+                        className={styles.containerSuggestions}
+                        ref={elementRef}
+                    >
                         {suggestion}
                     </div>
                 </div>
@@ -78,6 +82,7 @@ const Sidebar = (props) => {
                             className={styles.textInputCity}
                             type="text"
                             placeholder={'Buscar por ciudad'}
+                            value={props.inputPlace}
                         />
                     </div>
                 )}
@@ -101,6 +106,7 @@ const Sidebar = (props) => {
                 handlePrevPage={handlePrevPage}
                 handleChangePage={handleChangePage}
                 handleSideBarMouseOver={handleSideBarMouseOver}
+                totalPages={totalPages}
             />
         </div>
     );

@@ -26,8 +26,9 @@ export default function Home(props) {
         activelistItems,
         mapInstanceRef,
         places,
-        setMarkerPlaces,
-        markerPlaces
+        handleDragEndMap,
+        setMapIsReady,
+        mapIsReady
     } = talonProps;
 
     if (errorConsultPosition.code) {
@@ -56,11 +57,11 @@ export default function Home(props) {
                     {places ? (
                         <div className={styles.mapMobileNone}>
                             <Map
-                                setMarkerPlaces={setMarkerPlaces}
-                                markerPlaces={markerPlaces}
+                                setMapIsReady={setMapIsReady}
+                                mapIsReady={mapIsReady}
                                 mapInstanceRef={mapInstanceRef}
                                 coords={currentPosition.coords}
-                                places={places}
+                                dragEnd={handleDragEndMap}
                             />
                         </div>
                     ) : null}

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useWindowWidth } from '@react-hook/window-size';
 import styles from './sidebar.module.css';
 import ItemResults from '../ItemResults/itemResults';
@@ -29,6 +29,7 @@ const Sidebar = (props) => {
     const onlyWidth = useWindowWidth();
 
     const [isMobile, setIsMobile] = useState(false);
+    const inputRef = useRef();
 
     useEffect(() => {
         setIsMobile(onlyWidth <= 768);
@@ -47,6 +48,24 @@ const Sidebar = (props) => {
             </div>
         ));
     }, [suggestions]);
+
+    useEffect(() => {
+        const autocomplete = new google.maps.places.Autocomplete(
+            inputRef.current,
+            {
+                componentRestrictions: {
+                    country: 'mx',
+                    fields: ['formatted_address', 'geometry', 'name']
+                }
+            }
+        );
+
+        autocomplete.addListener('place_changed', () => {
+            const { geometry } = autocomplete.getPlace();
+            console.log( autocomplete.getPlace())
+            console.log('Actulizando la locación', geometry.location.lat());
+        });
+    }, []);
 
     return (
         <div className={styles.root}>
@@ -79,10 +98,11 @@ const Sidebar = (props) => {
                 ) : (
                     <div className={styles.contentTextInputCity}>
                         <input
+                            ref={inputRef}
                             className={styles.textInputCity}
-                            type="text"
-                            placeholder={'Buscar por ciudad'}
-                            value={props.inputPlace}
+                            // type="text"
+                            // placeholder={'Buscar por ciudad'}
+                            // value={props.inputPlace}
                         />
                     </div>
                 )}

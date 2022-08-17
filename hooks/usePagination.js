@@ -3,10 +3,11 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 const usePagination = ({
     pageSize = 10,
     listItems = [],
-    markerPlaces = [],
     setClickedItem,
     setHoverItem,
-    clickedItem
+    map,
+    currentPosition,
+    tempPosicion
 }) => {
     const [activelistItems, setActivelistItems] = useState([]);
     const [totalPages, setTotalPages] = useState(0);
@@ -14,11 +15,17 @@ const usePagination = ({
     const refInfoWindow = useRef();
     const refInfoWindowOnClick = useRef();
 
+    const [currentMarker, setCurrentMarker] = useState(null);
+
+    const markersRef = useRef();
+
+    const [tempMarker, setTempMarker] = useState(null);
+
     /**
      * Handle events google maps markers
      */
 
-    const handleFormatInfo = ({ data, marker }) => {
+    const handleFormatInfo = ({ data }) => {
         const distance = `${parseFloat(data.distance_km).toFixed(1)} km`;
 
         const itemMarker = `<div style="display: flex; padding: 1rem;">
@@ -27,7 +34,7 @@ const usePagination = ({
         </div>
         <div style="display: flex; flex-direction: column;">
             <div style="font-weight: bold; color: #006fcf;">
-                ${marker.title}
+                ${data.nombre_establecimiento}
                 <span style="color: #000000; margin-left: 1rem; font-weight: normal;">
                     ${distance}
                 </span>
@@ -45,8 +52,7 @@ const usePagination = ({
         ({ startIndex, index }) =>
             () => {
                 const { current: infoWindow } = refInfoWindow;
-                const { current: infoWindowClick } = refInfoWindowOnClick;
-                const marker = markerPlaces[index];
+                const { current: markerPlaces } = markersRef;
                 for (const [id, mark] of markerPlaces.entries()) {
                     if (
                         mark.get('icon') === '/pinBlueHover.png' &&
@@ -84,42 +90,23 @@ const usePagination = ({
                     }
                 }
                 setClickedItem(index);
-
-
-
             },
-        [markerPlaces, setClickedItem, setHoverItem, listItems]
+        [markersRef, setClickedItem, setHoverItem, listItems]
     );
 
     /**
-     * Use effect generate pagination
+     * Useffect update markers
      */
-    useEffect(() => {
-        if (!listItems) {
+    const markerPlaces = useMemo(() => {
+        if (!listItems.length) {
             return;
         }
-        const startIndex = Math.floor(currentPage - 1) * pageSize;
-        const newList = listItems.slice(startIndex, startIndex + 10);
-        setTotalPages(Math.ceil(listItems.length / pageSize));
-        setActivelistItems(newList);
-    }, [listItems]);
 
-    /**
-     * Usffect when change page
-     */
-    useEffect(() => {
-        if (!listItems) return;
-        const startIndex = Math.floor(currentPage - 1) * pageSize;
-        const newList = listItems.slice(startIndex, startIndex + 10);
-        setActivelistItems(newList);
-    }, [currentPage]);
-
-    /**
-     * Useffect generate markers;
-     */
-    useEffect(() => {
-        if (!markerPlaces.length) {
-            return;
+        if (markersRef.current && markersRef.current.length) {
+            markersRef.current.map((marker) => {
+                marker.setMap(null);
+                marker = null;
+            });
         }
 
         if (!refInfoWindow.current) {
@@ -131,13 +118,51 @@ const usePagination = ({
             refInfoWindowOnClick.current = new google.maps.InfoWindow();
         }
 
+        if (!currentMarker) {
+            const current = new google.maps.Marker({
+                position: {
+                    lat: parseFloat(currentPosition.coords.latitude),
+                    lng: parseFloat(currentPosition.coords.longitude)
+                },
+                map,
+                icon: '/pinRed.png'
+            });
+
+            setCurrentMarker(current);
+        } else {
+
+            if(currentMarker){
+                currentMarker.setMap(null)
+            }
+
+            if(tempMarker){
+                tempMarker.setMap(null)
+
+            }
+            const marker = new google.maps.Marker({
+                position: {
+                    lat: parseFloat(tempPosicion.latitude),
+                    lng: parseFloat(tempPosicion.longitude)
+                },
+                map,
+                icon: '/pinRed.png'
+            });
+
+            setTempMarker(marker)
+        }
+
         const startIndex = Math.floor(currentPage - 1) * pageSize;
         const lastIndex = startIndex + 10;
         const { current: infoWindow } = refInfoWindow;
 
-        markerPlaces.forEach((marker, index) => {
-            const data = listItems[index];
-
+        const markerPlaces = listItems.map((data, index) => {
+            const marker = new google.maps.Marker({
+                position: {
+                    lat: parseFloat(data.latitude),
+                    lng: parseFloat(data.longitude)
+                },
+                map
+            });
             const itemMarker = handleFormatInfo({ marker, data });
 
             if (index >= startIndex && index < lastIndex) {
@@ -170,7 +195,8 @@ const usePagination = ({
                 });
 
                 marker.addListener('mouseout', () => {
-                    if (markerPlaces[index].isClickActive) return;
+                    if (markersRef.current[index].isClickActive) return;
+
                     setHoverItem(null);
                     marker.setIcon(`/dotBlue.png`);
                     infoWindow.close();
@@ -181,16 +207,46 @@ const usePagination = ({
                     handleOnClick({ startIndex, index })
                 );
             }
+            return marker;
         });
+
+        markersRef.current = markerPlaces;
+        return markerPlaces;
     }, [
-        markerPlaces,
+        handleOnClick,
         currentPage,
         pageSize,
         setHoverItem,
-        clickedItem,
-        handleOnClick,
-        listItems
+        listItems,
+        map,
+        currentPosition,
+        tempPosicion,
+        currentMarker,
+        setCurrentMarker
     ]);
+
+    /**
+     * Use effect generate pagination
+     */
+    useEffect(() => {
+        if (!listItems) {
+            return;
+        }
+        const startIndex = Math.floor(currentPage - 1) * pageSize;
+        const newList = listItems.slice(startIndex, startIndex + 10);
+        setTotalPages(Math.ceil(listItems.length / pageSize));
+        setActivelistItems(newList);
+    }, [listItems]);
+
+    /**
+     * Usffect when change page
+     */
+    useEffect(() => {
+        if (!listItems) return;
+        const startIndex = Math.floor(currentPage - 1) * pageSize;
+        const newList = listItems.slice(startIndex, startIndex + 10);
+        setActivelistItems(newList);
+    }, [currentPage]);
 
     const handleNextPage = useCallback(() => {
         if (currentPage === totalPages) {
@@ -220,7 +276,9 @@ const usePagination = ({
         pageSize,
         refInfoWindow,
         refInfoWindowOnClick,
-        handleFormatInfo
+        handleFormatInfo,
+        totalPages,
+        markerPlaces
     };
 };
 

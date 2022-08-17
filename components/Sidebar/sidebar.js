@@ -1,10 +1,10 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useWindowWidth } from '@react-hook/window-size';
 import styles from './sidebar.module.css';
 import ItemResults from '../ItemResults/itemResults';
 import Filters from '../Filters/filters';
 import Pagination from '../Pagination';
-import {IconSearch} from "../Icons/icons";
+import { IconSearch } from '../Icons/icons';
 
 const Sidebar = (props) => {
     const {
@@ -22,12 +22,14 @@ const Sidebar = (props) => {
         pageSize,
         suggestions,
         triggerRef,
-        elementRef
+        elementRef,
+        totalPages
     } = props;
 
     const onlyWidth = useWindowWidth();
 
     const [isMobile, setIsMobile] = useState(false);
+    const inputRef = useRef();
 
     useEffect(() => {
         setIsMobile(onlyWidth <= 768);
@@ -47,6 +49,24 @@ const Sidebar = (props) => {
         ));
     }, [suggestions]);
 
+    useEffect(() => {
+        const autocomplete = new google.maps.places.Autocomplete(
+            inputRef.current,
+            {
+                componentRestrictions: {
+                    country: 'mx',
+                    fields: ['formatted_address', 'geometry', 'name']
+                }
+            }
+        );
+
+        autocomplete.addListener('place_changed', () => {
+            const { geometry } = autocomplete.getPlace();
+            console.log( autocomplete.getPlace())
+            console.log('Actulizando la locación', geometry.location.lat());
+        });
+    }, []);
+
     return (
         <div className={styles.root}>
             <div className={styles.containerSearch}>
@@ -64,7 +84,10 @@ const Sidebar = (props) => {
                             <IconSearch/>
                         </button>*/}
                     </div>
-                    <div className={styles.containerSuggestions} ref={elementRef}>
+                    <div
+                        className={styles.containerSuggestions}
+                        ref={elementRef}
+                    >
                         {suggestion}
                     </div>
                 </div>
@@ -75,9 +98,11 @@ const Sidebar = (props) => {
                 ) : (
                     <div className={styles.contentTextInputCity}>
                         <input
+                            ref={inputRef}
                             className={styles.textInputCity}
-                            type="text"
-                            placeholder={'Buscar por ciudad'}
+                            // type="text"
+                            // placeholder={'Buscar por ciudad'}
+                            // value={props.inputPlace}
                         />
                     </div>
                 )}
@@ -101,6 +126,7 @@ const Sidebar = (props) => {
                 handlePrevPage={handlePrevPage}
                 handleChangePage={handleChangePage}
                 handleSideBarMouseOver={handleSideBarMouseOver}
+                totalPages={totalPages}
             />
         </div>
     );

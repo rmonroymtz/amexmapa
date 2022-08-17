@@ -29,15 +29,61 @@
     cursor: pointer;
     transition: color .25s ease-out,background-color .25s ease-out;
 }
-
-.iconType {
+/* Restaurants  */
+.iconRestaurants {
     content: url("../../public/restaurant.png");
     height: 20px;
     width: 20px;
 }
 
-.iconType:hover {
+.iconRestaurants:hover {
     content: url("../../public/restaurantHover.png");
+    height: 20px;
+    width: 20px;
+}
+
+/* Entertainment  */
+.iconEntertainment {
+    content: url("../../public/entertainmentB.png");
+    height: 20px;
+    width: 20px;
+    transform: rotate(180deg);
+}
+
+/* Retail  */
+.iconRetail {
+    content: url("../../public/retails.png");
+    height: 20px;
+    width: 20px;
+}
+
+.iconRetail:hover {
+    content: url("../../public/retailHover.png");
+    height: 20px;
+    width: 20px;
+}
+
+/* Services  */
+.iconServices {
+    content: url("../../public/services.png");
+    height: 20px;
+    width: 20px;
+}
+
+.iconServices:hover {
+    content: url("../../public/servicesHover.png");
+    height: 20px;
+    width: 20px;
+}
+/* Travel  */
+.iconTravel {
+    content: url("../../public/travel.png");
+    height: 20px;
+    width: 20px;
+}
+
+.iconTravel:hover {
+    content: url("../../public/travelHover.png");
     height: 20px;
     width: 20px;
 }

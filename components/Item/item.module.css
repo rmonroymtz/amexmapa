@@ -1,7 +1,7 @@
 .itemResult {
     display: grid;
-    grid-template-columns: .5fr 3fr repeat(3, .5fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: .5fr 3fr repeat(2, .5fr);
+    grid-template-rows: repeat(2, 1fr);
     grid-column-gap: 0;
     grid-row-gap: 0;
     padding: 1.25rem;

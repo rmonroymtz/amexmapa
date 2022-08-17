@@ -20,16 +20,28 @@ const ItemResults = ({
 
             let iconType = '';
 
-            if (place.industria==='Entertainment') {
-                iconType = <pan>E</pan>
-            } else if (place.industria==='Retail'){
-                iconType=<span>R</span>
-            } else if(place.industria==='Restaurant'){
-                iconType=<span className={styles.iconType}></span>
-            } else if(place.industria==='Professional Services'){
-                iconType=<span className={styles.iconType}></span>
-            }
+            let industry = place.industria;
 
+            if (industry==='Entertainment') {
+                iconType = <span className={styles.iconEntertainment}></span>
+
+            } else if (industry==='Retail'){
+                iconType = <span className={styles.iconRetail}></span>
+
+            } else if(industry==='Restaurant'){
+                iconType = <span className={styles.iconRestaurants}></span>
+
+            } else if(
+                industry==='Professional Services' ||
+                industry==='Education' ||
+                industry==='Healthcare Services'
+            ){
+                iconType = <span className={styles.iconServices}></span>
+
+            } else if(industry==='Travel') {
+                iconType = <span className={styles.iconTravel}></span>
+
+            }
 
             return (
                 <Item

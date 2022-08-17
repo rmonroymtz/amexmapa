@@ -35,6 +35,16 @@ const Sidebar = (props) => {
         setIsMobile(onlyWidth <= 768);
     }, [onlyWidth]);
 
+    const [isModalOpen, setIsModalOpen]=useState(false)
+
+    const handleShowModal =()=> {
+        setIsModalOpen(true)
+    }
+
+    const handleCloseModal=()=> {
+        setIsModalOpen(false)
+    }
+
     const suggestion = useMemo(() => {
         if (!suggestions.length) return null;
 
@@ -48,6 +58,78 @@ const Sidebar = (props) => {
             </div>
         ));
     }, [suggestions]);
+
+    const btnShowMap = isMobile
+        ?   <div className={styles.contentBtnMap}>
+            <button className={styles.btnMap}>Map</button>
+        </div>
+        : isModalOpen? <div className={styles.contentTextInputCity}>
+            <input
+                className={styles.textInputCity}
+                type="text"
+                placeholder={'Buscar por ciudad'}
+            />
+        </div>:null;
+
+    const modalSearch = isModalOpen
+        ? styles.containerModal
+        : styles.containerSearch;
+
+    const modalTextInputName = isModalOpen
+        ? styles.contentTextInputNameModal
+        : styles.contentTextInputName;
+
+    const modalShowBtnMap = isModalOpen
+        ? null
+        : btnShowMap;
+
+    const stylesSearchBarHidden = isModalOpen
+        ? styles.searchBarHiddenTrue
+        : null;
+
+    const stylesBoxChange = isModalOpen
+        ? styles.containerSearchBar
+        : styles.containerSearchBarDefault;
+
+    // this constant is only active when the modal is true but is visible behind the modal
+    const inputHidden = isModalOpen? (
+        <div className={styles.containerSearch}>
+            <div className={stylesSearchBarHidden}>
+                <div className={modalTextInputName}>
+                    <input
+                        onClick={handleShowModal}
+                        onChange={handleInputSuggestion}
+                        className={styles.textInputName}
+                        type="text"
+                        placeholder={'Buscar por nombre'}
+                        value={inputSuggestions}
+                        ref={triggerRef}
+                    />
+                    {/*<button className={styles.searchBtn}>
+                                <IconSearch/>
+                            </button>*/}
+                </div>
+
+                {modalShowBtnMap}
+                {isModalOpen
+                    ? null
+                    : isMobile? null: <div className={styles.containerSuggestions} ref={elementRef}>
+                        {suggestion}
+                    </div>
+                }
+            </div>
+        </div>
+    ) :null;
+
+    const inputCity = (
+        <div className={styles.contentTextInputCity}>
+            <input
+                ref={inputRef}
+                className={styles.textInputCity}
+
+            />
+        </div>
+    )
 
     useEffect(() => {
         const autocomplete = new google.maps.places.Autocomplete(
@@ -69,10 +151,13 @@ const Sidebar = (props) => {
 
     return (
         <div className={styles.root}>
-            <div className={styles.containerSearch}>
-                <div className={styles.containerSearchBar}>
-                    <div className={styles.contentTextInputName}>
+            <div className={modalSearch}>
+                <div className={stylesBoxChange}
+                     onBlur={handleCloseModal}
+                >
+                    <div className={modalTextInputName}>
                         <input
+                            onClick={isMobile? handleShowModal:null}
                             onChange={handleInputSuggestion}
                             className={styles.textInputName}
                             type="text"
@@ -84,29 +169,38 @@ const Sidebar = (props) => {
                             <IconSearch/>
                         </button>*/}
                     </div>
-                    <div
-                        className={styles.containerSuggestions}
-                        ref={elementRef}
-                    >
+                    {isMobile
+                        ? null
+                        : isModalOpen? null:<div className={styles.contentTextInputCity}>
+                            {inputCity}
+                        </div>
+                    }
+
+                    {isModalOpen?
+                        <>
+                            {inputCity}
+                            <div className={styles.containerBtnSearch}>
+                                <button className={styles.btnSearch}>
+                                    Buscar
+                                </button>
+                            </div>
+
+                        </>
+                        :null
+                    }
+                    {modalShowBtnMap}
+
+                </div>
+                {isModalOpen
+                    ? <div className={styles.containerSuggestionsModal} ref={elementRef}>
                         {suggestion}
                     </div>
-                </div>
-                {isMobile ? (
-                    <div>
-                        <button className={styles.btnMap}>Map</button>
+                    : isMobile? null: <div className={styles.containerSuggestionsModal} ref={elementRef}>
+                        {suggestion}
                     </div>
-                ) : (
-                    <div className={styles.contentTextInputCity}>
-                        <input
-                            ref={inputRef}
-                            className={styles.textInputCity}
-                            // type="text"
-                            // placeholder={'Buscar por ciudad'}
-                            // value={props.inputPlace}
-                        />
-                    </div>
-                )}
+                }
             </div>
+            {inputHidden}
             <Filters />
             <div className={styles.containerResults}>
                 <ItemResults

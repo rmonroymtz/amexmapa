@@ -33,6 +33,8 @@ const useHome = (props) => {
         setClickedItem,
         hoverItem,
         listItems: places,
+        setTempositon,
+        mapInstanceRef,
         ...talonPagination
     });
     /**

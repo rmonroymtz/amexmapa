@@ -9,7 +9,9 @@ export const useSideBar = (props) => {
         listItems,
         refInfoWindow,
         refInfoWindowOnClick,
-        handleFormatInfo
+        handleFormatInfo,
+        setTempositon,
+        mapInstanceRef
     } = props;
 
     const [suggestions, setSuggestions] = useState([]);
@@ -129,12 +131,31 @@ export const useSideBar = (props) => {
         }
     }, [expanded, selectedSuggestion]);
 
+    /**
+     * Handle Change Place
+     */
+
+    const handlePlaceChange = useCallback(
+        (autocomplete) => {
+            const { current: map } = mapInstanceRef;
+            const { geometry } = autocomplete.getPlace();
+            const latitude = geometry.location.lat();
+            const longitude = geometry.location.lng();
+            console.log({ lng: longitude, lat: latitude });
+            map.panTo({ lng: longitude, lat: latitude });
+            console.log(map.getCenter());
+            setTempositon({ latitude, longitude });
+        },
+        [setTempositon, mapInstanceRef]
+    );
+
     return {
         handleSideBarOnClick,
         handleSideBarMouseOver,
         handleSideBarMouseOut,
         handleInputSuggestion,
         handleSelectSuggestion,
+        handlePlaceChange,
         setClickedItem,
         inputSuggestions,
         suggestions,

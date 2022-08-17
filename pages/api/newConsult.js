@@ -33,7 +33,8 @@ export default async function consult(req, res) {
             SubIndustria: [],
             Limit: '100',
             StartLimit: '0',
-            DistanceType: 'km'
+            DistanceType: 'km',
+            NameSearch:''
         };
 
         const myHeaders = new Headers();

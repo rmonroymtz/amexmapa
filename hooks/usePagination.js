@@ -19,8 +19,6 @@ const usePagination = ({
 
     const markersRef = useRef();
 
-    const [tempMarker, setTempMarker] = useState(null);
-
     /**
      * Handle events google maps markers
      */
@@ -60,8 +58,7 @@ const usePagination = ({
                     ) {
                         const data = listItems[id];
                         const itemMarker = handleFormatInfo({
-                            data,
-                            marker: mark
+                            data
                         });
                         let icon;
                         let hoverIcon;
@@ -130,25 +127,10 @@ const usePagination = ({
 
             setCurrentMarker(current);
         } else {
-
-            if(currentMarker){
-                currentMarker.setMap(null)
-            }
-
-            if(tempMarker){
-                tempMarker.setMap(null)
-
-            }
-            const marker = new google.maps.Marker({
-                position: {
-                    lat: parseFloat(tempPosicion.latitude),
-                    lng: parseFloat(tempPosicion.longitude)
-                },
-                map,
-                icon: '/pinRed.png'
+            currentMarker.setPosition({
+                lat: parseFloat(tempPosicion.latitude),
+                lng: parseFloat(tempPosicion.longitude)
             });
-
-            setTempMarker(marker)
         }
 
         const startIndex = Math.floor(currentPage - 1) * pageSize;
@@ -163,7 +145,7 @@ const usePagination = ({
                 },
                 map
             });
-            const itemMarker = handleFormatInfo({ marker, data });
+            const itemMarker = handleFormatInfo({ data });
 
             if (index >= startIndex && index < lastIndex) {
                 marker.setIcon('/pinBlue.png');

@@ -18,6 +18,7 @@ const Sidebar = (props) => {
         handleSideBarOnClick,
         handleInputSuggestion,
         handleSelectSuggestion,
+        handlePlaceChange,
         inputSuggestions,
         pageSize,
         suggestions,
@@ -136,17 +137,14 @@ const Sidebar = (props) => {
             inputRef.current,
             {
                 componentRestrictions: {
-                    country: 'mx',
-                    fields: ['formatted_address', 'geometry', 'name']
+                    country: 'mx'
                 }
             }
         );
 
-        autocomplete.addListener('place_changed', () => {
-            const { geometry } = autocomplete.getPlace();
-            console.log( autocomplete.getPlace())
-            console.log('Actulizando la locación', geometry.location.lat());
-        });
+        autocomplete.addListener('place_changed', () =>
+            handlePlaceChange(autocomplete)
+        );
     }, []);
 
     return (

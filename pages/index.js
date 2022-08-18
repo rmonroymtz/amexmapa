@@ -25,7 +25,6 @@ export default function Home(props) {
         currentPosition,
         activelistItems,
         mapInstanceRef,
-        places,
         handleDragEndMap,
         setMapIsReady,
         mapIsReady
@@ -54,17 +53,15 @@ export default function Home(props) {
                 <Sidebar places={activelistItems} {...talonProps} />
                 <div className={styles.containerMap}>
                     <Details {...talonProps} />
-                    {places ? (
-                        <div className={styles.mapMobileNone}>
-                            <Map
-                                setMapIsReady={setMapIsReady}
-                                mapIsReady={mapIsReady}
-                                mapInstanceRef={mapInstanceRef}
-                                coords={currentPosition.coords}
-                                dragEnd={handleDragEndMap}
-                            />
-                        </div>
-                    ) : null}
+                    <div className={styles.mapMobileNone}>
+                        <Map
+                            setMapIsReady={setMapIsReady}
+                            mapIsReady={mapIsReady}
+                            mapInstanceRef={mapInstanceRef}
+                            coords={currentPosition.coords}
+                            dragEnd={handleDragEndMap}
+                        />
+                    </div>
                 </div>
             </div>
 

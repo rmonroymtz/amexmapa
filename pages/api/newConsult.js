@@ -1,5 +1,7 @@
 export default async function consult(req, res) {
     try {
+        console.log(req.body);
+
         if (req.method !== 'post' && req.method !== 'POST') {
             res.status(404).send('Method no allowed' + req.method);
             return;
@@ -11,7 +13,7 @@ export default async function consult(req, res) {
         }
 
         if (!req.body.latitude || !req.body.longitude) {
-            req.status(404).send('Lantitude and logitude required');
+            res.status(404).send('Lantitude and logitude required');
             return;
         }
 
@@ -34,8 +36,10 @@ export default async function consult(req, res) {
             Limit: '100',
             StartLimit: '0',
             DistanceType: 'km',
-            NameSearch:''
+            NameSearch: `${req.body.NameSearch || ''}`
         };
+
+        console.log(options);
 
         const myHeaders = new Headers();
 

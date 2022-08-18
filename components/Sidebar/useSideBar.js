@@ -10,8 +10,10 @@ export const useSideBar = (props) => {
         refInfoWindow,
         refInfoWindowOnClick,
         handleFormatInfo,
-        setTempositon,
-        mapInstanceRef
+        setTempLtaLng,
+        mapInstanceRef,
+        tempLtaLng,
+        setPlaces
     } = props;
 
     const [suggestions, setSuggestions] = useState([]);
@@ -101,7 +103,37 @@ export const useSideBar = (props) => {
         setSelectedSuggestion(true);
         setSuggestions([]);
         setExpanded(false);
+        handleConsultSuggestion(place);
     };
+
+    const handleConsultSuggestion = useCallback(
+        async (place) => {
+            try {
+                const { latitude, longitude } = tempLtaLng;
+
+                const fetchOptions = {
+                    method: 'post',
+                    body: JSON.stringify({
+                        latitude,
+                        longitude,
+                        NameSearch: place.nombre_establecimiento
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                };
+                const respose = await fetch('/api/newConsult', fetchOptions);
+                const data = await respose.json();
+                if (data.body) {
+                    setPlaces(data.body);
+                    setInputSuggestion(place.nombre_establecimiento);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        },
+        [inputSuggestions, tempLtaLng, setPlaces]
+    );
 
     useEffect(() => {
         const tempPlaces = [];
@@ -141,12 +173,10 @@ export const useSideBar = (props) => {
             const { geometry } = autocomplete.getPlace();
             const latitude = geometry.location.lat();
             const longitude = geometry.location.lng();
-            console.log({ lng: longitude, lat: latitude });
             map.panTo({ lng: longitude, lat: latitude });
-            console.log(map.getCenter());
-            setTempositon({ latitude, longitude });
+            setTempLtaLng({ latitude, longitude });
         },
-        [setTempositon, mapInstanceRef]
+        [setTempLtaLng, mapInstanceRef]
     );
 
     return {

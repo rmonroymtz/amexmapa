@@ -20,6 +20,8 @@ const Sidebar = (props) => {
         handleSelectSuggestion,
         handlePlaceChange,
         inputSuggestions,
+        inputPlace,
+        setInputPlace,
         pageSize,
         suggestions,
         triggerRef,
@@ -36,15 +38,15 @@ const Sidebar = (props) => {
         setIsMobile(onlyWidth <= 768);
     }, [onlyWidth]);
 
-    const [isModalOpen, setIsModalOpen]=useState(false)
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const handleShowModal =()=> {
-        setIsModalOpen(true)
-    }
+    const handleShowModal = () => {
+        setIsModalOpen(true);
+    };
 
-    const handleCloseModal=()=> {
-        setIsModalOpen(false)
-    }
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
 
     const suggestion = useMemo(() => {
         if (!suggestions.length) return null;
@@ -60,17 +62,19 @@ const Sidebar = (props) => {
         ));
     }, [suggestions]);
 
-    const btnShowMap = isMobile
-        ?   <div className={styles.contentBtnMap}>
+    const btnShowMap = isMobile ? (
+        <div className={styles.contentBtnMap}>
             <button className={styles.btnMap}>Map</button>
         </div>
-        : isModalOpen? <div className={styles.contentTextInputCity}>
+    ) : isModalOpen ? (
+        <div className={styles.contentTextInputCity}>
             <input
                 className={styles.textInputCity}
                 type="text"
                 placeholder={'Buscar por ciudad'}
             />
-        </div>:null;
+        </div>
+    ) : null;
 
     const modalSearch = isModalOpen
         ? styles.containerModal
@@ -80,9 +84,7 @@ const Sidebar = (props) => {
         ? styles.contentTextInputNameModal
         : styles.contentTextInputName;
 
-    const modalShowBtnMap = isModalOpen
-        ? null
-        : btnShowMap;
+    const modalShowBtnMap = isModalOpen ? null : btnShowMap;
 
     const stylesSearchBarHidden = isModalOpen
         ? styles.searchBarHiddenTrue
@@ -93,7 +95,7 @@ const Sidebar = (props) => {
         : styles.containerSearchBarDefault;
 
     // this constant is only active when the modal is true but is visible behind the modal
-    const inputHidden = isModalOpen? (
+    const inputHidden = isModalOpen ? (
         <div className={styles.containerSearch}>
             <div className={stylesSearchBarHidden}>
                 <div className={modalTextInputName}>
@@ -112,25 +114,30 @@ const Sidebar = (props) => {
                 </div>
 
                 {modalShowBtnMap}
-                {isModalOpen
-                    ? null
-                    : isMobile? null: <div className={styles.containerSuggestions} ref={elementRef}>
+                {isModalOpen ? null : isMobile ? null : (
+                    <div
+                        className={styles.containerSuggestions}
+                        ref={elementRef}
+                    >
                         {suggestion}
                     </div>
-                }
+                )}
             </div>
         </div>
-    ) :null;
+    ) : null;
 
     const inputCity = (
         <div className={styles.contentTextInputCity}>
             <input
                 ref={inputRef}
                 className={styles.textInputCity}
-
+                value={inputPlace}
+                onChange={({ target }) => {
+                    setInputPlace(target.value);
+                }}
             />
         </div>
-    )
+    );
 
     useEffect(() => {
         const autocomplete = new google.maps.places.Autocomplete(
@@ -138,7 +145,14 @@ const Sidebar = (props) => {
             {
                 componentRestrictions: {
                     country: 'mx'
-                }
+                },
+                fields: [
+                    'formatted_address',
+                    'place_id',
+                    'name',
+                    'types',
+                    'geometry'
+                ]
             }
         );
 
@@ -150,12 +164,10 @@ const Sidebar = (props) => {
     return (
         <div className={styles.root}>
             <div className={modalSearch}>
-                <div className={stylesBoxChange}
-                     onBlur={handleCloseModal}
-                >
+                <div className={stylesBoxChange} onBlur={handleCloseModal}>
                     <div className={modalTextInputName}>
                         <input
-                            onClick={isMobile? handleShowModal:null}
+                            onClick={isMobile ? handleShowModal : null}
                             onChange={handleInputSuggestion}
                             className={styles.textInputName}
                             type="text"
@@ -167,14 +179,13 @@ const Sidebar = (props) => {
                             <IconSearch/>
                         </button>*/}
                     </div>
-                    {isMobile
-                        ? null
-                        : isModalOpen? null:<div className={styles.contentTextInputCity}>
+                    {isMobile ? null : isModalOpen ? null : (
+                        <div className={styles.contentTextInputCity}>
                             {inputCity}
                         </div>
-                    }
+                    )}
 
-                    {isModalOpen?
+                    {isModalOpen ? (
                         <>
                             {inputCity}
                             <div className={styles.containerBtnSearch}>
@@ -182,21 +193,25 @@ const Sidebar = (props) => {
                                     Buscar
                                 </button>
                             </div>
-
                         </>
-                        :null
-                    }
+                    ) : null}
                     {modalShowBtnMap}
-
                 </div>
-                {isModalOpen
-                    ? <div className={styles.containerSuggestionsModal} ref={elementRef}>
+                {isModalOpen ? (
+                    <div
+                        className={styles.containerSuggestionsModal}
+                        ref={elementRef}
+                    >
                         {suggestion}
                     </div>
-                    : isMobile? null: <div className={styles.containerSuggestionsModal} ref={elementRef}>
+                ) : isMobile ? null : (
+                    <div
+                        className={styles.containerSuggestionsModal}
+                        ref={elementRef}
+                    >
                         {suggestion}
                     </div>
-                }
+                )}
             </div>
             {inputHidden}
             <Filters />

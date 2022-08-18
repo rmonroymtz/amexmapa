@@ -84,6 +84,7 @@ const Details = (props) => {
                                 href={locationApi}
                                 className={styles.btnLocation}
                                 target="_blank"
+                                rel="noreferrer"
                             >
                                 <div className={styles.iconLocation}></div>
                                 <div className={styles.address}>

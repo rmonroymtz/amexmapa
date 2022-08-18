@@ -12,16 +12,11 @@ export default async function consult(req, res) {
             return;
         }
 
-        if (!req.body.latitude || !req.body.longitude) {
-            res.status(404).send('Lantitude and logitude required');
-            return;
-        }
-
         const options = {
             Latitude: `${req.body.latitude}`,
             Longitude: `${req.body.longitude}`,
             Distance: '25',
-            Industria: [
+            Industria: req.body.industria || [
                 'Travel',
                 'Transportation',
                 'Professional Services',

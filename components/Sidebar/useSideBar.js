@@ -13,7 +13,8 @@ export const useSideBar = (props) => {
         setTempLtaLng,
         mapInstanceRef,
         tempLtaLng,
-        setPlaces
+        setPlaces,
+        handleConsultPlaces
     } = props;
 
     const [suggestions, setSuggestions] = useState([]);
@@ -27,8 +28,9 @@ export const useSideBar = (props) => {
 
     useEffect(() => {
         setSuggestions([]);
-        setSelectedSuggestion(false);
-        setInputSuggestion('');
+        if (!selectedSuggestion) {
+            setInputSuggestion('');
+        }
         setExpanded(false);
         setClickedItem(null);
     }, [listItems]);
@@ -91,7 +93,10 @@ export const useSideBar = (props) => {
         const { value } = event.target;
         if (!value.length) {
             setExpanded(false);
-            setSelectedSuggestion(false);
+            if (selectedSuggestion) {
+                setSelectedSuggestion(false);
+                handleConsultPlaces(tempLtaLng);
+            }
         } else {
             setExpanded(true);
         }

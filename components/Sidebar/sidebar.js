@@ -26,7 +26,12 @@ const Sidebar = (props) => {
         suggestions,
         triggerRef,
         elementRef,
-        totalPages
+        totalPages,
+        handleApplyFilters,
+        handleClearFilters,
+        categories,
+        setCategories,
+        places
     } = props;
 
     const onlyWidth = useWindowWidth();
@@ -214,7 +219,13 @@ const Sidebar = (props) => {
                 )}
             </div>
             {inputHidden}
-            <Filters />
+            <Filters
+                setCategories={setCategories}
+                categories={categories}
+                handleApplyFilters={handleApplyFilters}
+                handleClearFilters={handleClearFilters}
+                activelistItems={places}
+            />
             <div className={styles.containerResults}>
                 <ItemResults
                     places={activelistItems}
